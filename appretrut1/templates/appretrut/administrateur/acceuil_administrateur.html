@@ -1,0 +1,678 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>accuiel administrateur</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'appretrut/administrateur/css/acceuil.css' %}">
+</head>
+<body>
+
+  <main>
+<header class="fixed-top">
+   <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light head">
+  <div class="container-fluid long">
+    <a class="navbar-brand app text-white" href="#">appretruct</a>
+   <div class="hum">
+    <button class="navbar-toggler bth1 btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+   
+    <div class="collapse navbar-collapse dev d-flex ju" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item d1">
+          <a class="nav-link lien1  li" aria-current="page" href="{% url 'acceuil_administrateur' %}"> &nbsp; &nbsp; acceuil &nbsp; &nbsp;</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link lien li1 text-white" href="{% url 'offre_administrateur' %}">offre d'emploi</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link    lien li1 text-white " href="{% url 'entreprise_administrateur' %}">&nbsp;entreprise&nbsp;</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link lien li1 text-white" href="{% url 'candidature_administrateur' %}">&nbsp;Candidature&nbsp;</a>
+        </li>
+       
+      
+        <li class="nav-item">
+          <a class="nav-link lien li1 text-white" href="{% url 'contact_administrateur' %}">&nbsp;contact&nbsp;</a>
+        </li>
+        
+</ul>
+  
+  
+
+    </div>
+
+ 
+   <div>
+      
+          <a class="nav-link lien li12 text-white " href="{% url 'tabbord_administrateur' %}">
+          <div> <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e3e3e3"><path d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm146.5-204.5Q340-521 340-580t40.5-99.5Q421-720 480-720t99.5 40.5Q620-639 620-580t-40.5 99.5Q539-440 480-440t-99.5-40.5ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm100-95.5q47-15.5 86-44.5-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160q53 0 100-15.5ZM523-537q17-17 17-43t-17-43q-17-17-43-17t-43 17q-17 17-17 43t17 43q17 17 43 17t43-17Zm-43-43Zm0 360Z"/></svg>
+            </div> Tableau de bord 
+          </a>
+        
+     </div>
+</div>
+       
+  </div>
+</nav>
+</div>
+</header>
+
+<section class="container-fluid carrosel">
+  <div class="row">
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active haut">
+      <img src="../asset/pexels-cedric-eriale-416969752-16924773.jpg" class="d-block w-100" alt="Professionnels en réunion">
+      <div class="carousel-caption d5">
+        <h5>Trouvez l'emploi qui correspond à vos ambitions</h5>
+        <p>Découvrez des milliers d'opportunités professionnelles auprès des meilleures entreprises.</p>
+      </div>
+    </div>
+    <div class="carousel-item haut">
+      <img src="../asset/pexels-gabby-k-9490624.jpg" class="d-block w-100" alt="Candidate travaillant sur un ordinateur">
+      <div class="carousel-caption d5">
+        <h5>Votre carrière commence ici</h5>
+        <p>Créez votre profil, déposez votre CV et trouvez rapidement l'offre qui vous correspond.</p>
+      </div>
+    </div>
+    <div class="carousel-item haut">
+      <img src="../asset/pexels-tima-miroshnichenko-5439140.jpg" class="d-block w-100" alt="Équipe professionnelle en entretien">
+      <div class="carousel-caption d5">
+        <h5>Recrutez les meilleurs talents</h5>
+        <p>Publiez vos offres et trouvez les candidats qualifiés pour développer votre entreprise.</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</div>
+</section>
+
+
+
+<section class="container-fluid parti2">
+  <div class="row g-4">
+    <div class="col-lg-12 col-md-12 em">
+      Découvrez les opportunités par domaine
+    </div>
+
+   <div class="col-lg-4 col-md-6 card1">
+
+    <div class="card h-100 shadow">
+
+        <div class="card-header bg-white">
+            <h5 class="card-title mb-0 h5">
+                Informatique & Digital
+            </h5>
+        </div>
+
+        <div class="card-body">
+
+            <ul class="list-unstyled metier liste-metiers">
+
+                <li><a href="#" class="a1">Développeur web/mobile</a></li>
+                <li><a href="#" class="a1">Ingénieur logiciel</a></li>
+                <li><a href="#" class="a1">Data analyst</a></li>
+                <li><a href="#" class="a1">Intelligence artificielle</a></li>
+                <li><a href="#" class="a1">Cybersécurité</a></li>
+                <li><a href="#" class="a1">Réseau informatique</a></li>
+                <li><a href="#" class="a1">UI/UX Designer</a></li>
+                <li><a href="#" class="a1">Infographiste</a></li>
+                <li><a href="#" class="a1">Monteur vidéo</a></li>
+                <li><a href="#" class="a1">Designer digital</a></li>
+
+            </ul>
+
+        </div>
+
+        <div class="card-footer bg-white">
+
+            <button class="btn btn-primary w-100">
+                Voir les offres
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="col-lg-4 col-md-6 card1">
+
+<div class="card h-100 shadow">
+
+<div class="card-header bg-white">
+<h5 class="card-title mb-0 h5">
+Santé & Médical
+</h5>
+</div>
+
+<div class="card-body">
+
+<ul class="list-unstyled metier liste-metiers">
+
+<li><a href="#" class="a1">Médecin</a></li>
+<li><a href="#" class="a1">Infirmier</a></li>
+<li><a href="#" class="a1">Pharmacien</a></li>
+<li><a href="#" class="a1">Sage-femme</a></li>
+<li><a href="#" class="a1">Dentiste</a></li>
+<li><a href="#" class="a1">Laborantin</a></li>
+<li><a href="#" class="a1">Psychologue</a></li>
+<li><a href="#" class="a1">Assistant médical</a></li>
+
+</ul>
+
+</div>
+
+<div class="card-footer bg-white">
+<button class="btn btn-primary w-100">
+Voir les offres
+</button>
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="col-lg-4 col-md-6 card1">
+
+<div class="card h-100 shadow">
+
+<div class="card-header bg-white">
+<h5 class="card-title mb-0 h5">
+Industrie & Génie Technique
+</h5>
+</div>
+
+<div class="card-body">
+
+<ul class="list-unstyled metier liste-metiers">
+
+<li><a href="#" class="a1">Mécanicien</a></li>
+<li><a href="#" class="a1">Électromécanicien</a></li>
+<li><a href="#" class="a1">Mécatronicien</a></li>
+<li><a href="#" class="a1">Électricien</a></li>
+<li><a href="#" class="a1">Automaticien</a></li>
+<li><a href="#" class="a1">Chaudronnier</a></li>
+<li><a href="#" class="a1">Soudeur</a></li>
+<li><a href="#" class="a1">Maintenance industrielle</a></li>
+<li><a href="#" class="a1">Production industrielle</a></li>
+
+</ul>
+
+</div>
+
+<div class="card-footer bg-white">
+<button class="btn btn-primary w-100">
+Voir les offres
+</button>
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="col-lg-4 col-md-6 card1">
+
+<div class="card h-100 shadow">
+
+<div class="card-header bg-white">
+<h5 class="card-title mb-0 h5">
+BTP & Construction
+</h5>
+</div>
+
+<div class="card-body">
+
+<ul class="list-unstyled metier liste-metiers">
+
+<li><a href="#" class="a1">Architecte</a></li>
+<li><a href="#" class="a1">Ingénieur BTP</a></li>
+<li><a href="#" class="a1">Maçon</a></li>
+<li><a href="#" class="a1">Plombier</a></li>
+<li><a href="#" class="a1">Conducteur de travaux</a></li>
+<li><a href="#" class="a1">Chef chantier</a></li>
+<li><a href="#" class="a1">Dessinateur bâtiment</a></li>
+
+</ul>
+
+</div>
+
+<div class="card-footer bg-white">
+<button class="btn btn-primary w-100">
+Voir les offres
+</button>
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="col-lg-4 col-md-6 card1">
+
+<div class="card h-100 shadow">
+
+<div class="card-header bg-white">
+<h5 class="card-title mb-0 h5">
+Finance, Banque & Comptabilité
+</h5>
+</div>
+
+<div class="card-body">
+
+<ul class="list-unstyled metier liste-metiers">
+
+<li><a href="#" class="a1">Comptable</a></li>
+<li><a href="#" class="a1">Auditeur</a></li>
+<li><a href="#" class="a1">Caissier</a></li>
+<li><a href="#" class="a1">Banquier</a></li>
+<li><a href="#" class="a1">Gestionnaire financier</a></li>
+<li><a href="#" class="a1">Contrôleur de gestion</a></li>
+<li><a href="#" class="a1">Assurance</a></li>
+
+</ul>
+
+</div>
+
+<div class="card-footer bg-white">
+<button class="btn btn-primary w-100">
+Voir les offres
+</button>
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="col-lg-4 col-md-6 card1">
+
+<div class="card h-100 shadow">
+
+<div class="card-header bg-white">
+<h5 class="card-title mb-0 h5">
+Administration & Ressources Humaines
+</h5>
+</div>
+
+<div class="card-body">
+
+<ul class="list-unstyled metier liste-metiers">
+
+<li><a href="#" class="a1">Secrétaire</a></li>
+<li><a href="#" class="a1">Assistant administratif</a></li>
+<li><a href="#" class="a1">Responsable RH</a></li>
+<li><a href="#" class="a1">Gestionnaire</a></li>
+<li><a href="#" class="a1">Manager</a></li>
+<li><a href="#" class="a1">Assistant de direction</a></li>
+
+</ul>
+
+</div>
+
+<div class="card-footer bg-white">
+<button class="btn btn-primary w-100">
+Voir les offres
+</button>
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="col-lg-4 col-md-6 card1">
+
+<div class="card h-100 shadow">
+
+<div class="card-header bg-white">
+<h5 class="card-title mb-0 h5">
+Commerce & Relation Client
+</h5>
+</div>
+
+<div class="card-body">
+
+<ul class="list-unstyled metier liste-metiers">
+
+<li><a href="#" class="a1">Commercial</a></li>
+<li><a href="#" class="a1">Vendeur</a></li>
+<li><a href="#" class="a1">Responsable commercial</a></li>
+<li><a href="#" class="a1">Chargé clientèle</a></li>
+<li><a href="#" class="a1">Acheteur</a></li>
+<li><a href="#" class="a1">Business developer</a></li>
+
+</ul>
+
+</div>
+
+<div class="card-footer bg-white">
+<button class="btn btn-primary w-100">
+Voir les offres
+</button>
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="col-lg-4 col-md-6 card1">
+
+<div class="card h-100 shadow">
+
+<div class="card-header bg-white">
+<h5 class="card-title mb-0 h5">
+Marketing & Communication
+</h5>
+</div>
+
+<div class="card-body">
+
+<ul class="list-unstyled metier liste-metiers">
+
+<li><a href="#" class="a1">Marketing digital</a></li>
+<li><a href="#" class="a1">Community manager</a></li>
+<li><a href="#" class="a1">Communication</a></li>
+<li><a href="#" class="a1">Publicité</a></li>
+<li><a href="#" class="a1">Relations publiques</a></li>
+<li><a href="#" class="a1">Événementiel</a></li>
+
+</ul>
+
+</div>
+
+<div class="card-footer bg-white">
+<button class="btn btn-primary w-100">
+Voir les offres
+</button>
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+</section>
+<section class=" container-fluid parti3">
+  <div class="row g-2">
+  <div class="nos">
+
+    offre recent
+
+
+
+  </div>
+
+
+
+
+<section class="container-fluid partie3">
+
+ <div id="offre1" class="row">
+
+
+ </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+</div>
+</section>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+</main>
+
+   
+<footer class="text-center text-lg-start bg-body-tertiary text-muted">
+
+  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+
+    <div class="me-5 d-none d-lg-block text-white">
+      <span>Contactez-nous sur les réseaux sociaux :</span>
+    </div>
+
+
+ 
+    <div class="lien10">
+<!-- Facebook -->
+<a
+ data-mdb-ripple-init
+  class="btn text-white btn-floating m-1"
+  style="background-color: #3b5998;"
+  href="https://www.facebook.com/jared.22596"
+  target="_blank"
+  role="button">
+  <i class="fab fa-facebook-f"></i>
+</a>
+
+<!-- Twitter / X -->
+<a
+  data-mdb-ripple-init
+  class="btn text-white btn-floating m-1"
+  style="background-color: #000000;"
+  href="https://twitter.com/JARED20090"
+  target="_blank"
+  role="button">
+  <i class="fab fa-x-twitter"></i>
+</a>
+
+<!-- Email -->
+<a
+  data-mdb-ripple-init
+  class="btn text-white btn-floating m-1"
+  style="background-color: #dd4b39;"
+  href="mailto:princejared48@gmail.com"
+  role="button">
+  <i class="fas fa-envelope"></i>
+</a>
+
+<!-- Instagram -->
+<a
+  data-mdb-ripple-init
+  class="btn text-white btn-floating m-1"
+  style="background-color: #ac2bac;"
+  href="https://www.instagram.com/jared925941"
+  target="_blank"
+  role="button"
+>
+  <i class="fab fa-instagram"></i>
+</a>
+
+<!-- Linkedin -->
+<a
+  data-mdb-ripple-init
+  class="btn text-white btn-floating m-1"
+  style="background-color: #0082ca;"
+  href="https://www.linkedin.com/in/jared fone/"
+  target="_blank"
+  role="button"
+>
+  <i class="fab fa-linkedin-in"></i>
+</a>
+
+<!-- Github -->
+<a
+  data-mdb-ripple-init
+  class="btn text-white btn-floating m-1"
+  style="background-color: #333333;"
+  href="https://github.com/princejared48-rgb"
+  target="_blank"
+  role="button"
+>
+  <i class="fab fa-github"></i>
+</a>
+<!-- WhatsApp -->
+<a
+  data-mdb-ripple-init
+  class="btn text-white btn-floating m-1"
+  style="background-color: #25D366;"
+  href="https://wa.me/237677064542?text=Bonjour%20je%20vous%20contacte%20depuis%20votre%20site"
+  target="_blank"
+  role="button"
+>
+  <i class="fab fa-whatsapp"></i>
+</a>
+    </div>
+
+  </section>
+
+
+
+  <section class="foot">
+    <div class="container text-center  text-white text-md-start mt-5">
+   
+      <div class="row mt-3">
+      
+        <div class="f col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3"></i>appretrut
+          </h6>
+          <p class="text-white" >
+       Trouvez les meilleures offres d'emploi et recrutez les meilleurs talents grâce à notre plateforme simple, rapide et sécurisée
+          </p>
+          
+        </div>
+   
+        <div class="f1 col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+         
+          <h6 class="text-uppercase fw-bold mb-4">
+            navigation
+          </h6>
+          <p class="text-white">
+            <a href="#!" class="text-reset">Accueil</a>
+          </p>
+          <p class="text-white">
+            <a href="#!" class="text-reset">Offres d'emploi</a>
+          </p>
+          <p class="text-white">
+            <a href="#!" class="text-reset">Entreprises</a>
+          </p>
+          <p class="text-white" >
+            <a href="#!" class="text-reset">Candidatures</a>
+          </p>
+          <p class="text-white">
+            <a href="#!" class="text-reset">Tableau de bord</a>
+          </p>
+          <p class="text-white">
+            <a href="#!" class="text-reset">Contact</a>
+          </p>
+        </div>
+  
+        <div class="f2 col-md-3 col-lg-2 col-xl-2 mx-auto mb-4  text-white ">
+        
+          <h6 class="text-uppercase fw-bold mb-4">
+            À propos 
+          </h6>
+          <p class="text-white">
+            <a href="#!" class="text-reset  text-white ">FAQ</a>
+          </p>
+          <p class="text-white">
+            <a href="#!" class="text-reset">Conditions d'utilisation</a>
+          </p>
+          <p class="text-white">
+            <a href="#!" class="text-reset">Politique de confidentialité</a>
+          </p>
+          <p class="text-white">
+            <a href="#!" class="text-reset">Nous rejoindre</a>
+          </p>
+        </div>
+   
+        <div class="f3 col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+       
+          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+          <p><i class="fas fa-home me-3"></i><a href=""> Douala,Cameroun</a></p>
+          <p>
+            <a href="mailto:princejared@gmail.com" class="fas h1 fa-envelope me-3"> princejared@gmail.com</a>
+          
+          </p>
+          <p><i class="fas fa-phone me-3"></i> <a href="tel:+237677064542">+237 677 06 45 42</a></p>
+          <p><i class="fas fa-print me-3"></i> <a href="tel:+237699881581">+237 699 88 15 81</a></p>
+        </div>
+   
+      </div>
+    
+    </div>
+  </section>
+ 
+
+ 
+  <div class="text-center p-4 text-white" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2026 Copyright:
+    <a class="text-reset fw-bold" href="mailto:princejared@gmail.com">jared</a> Tout Droit Reserver
+  </div>
+
+</footer>
+
+
+</body>
+
+<script src="../utilisateur/scripts/jsajoutoffre.js"></script>
+</html>
+

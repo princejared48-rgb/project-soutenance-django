@@ -1,0 +1,289 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <title>Offres d'emploi | Appretruct</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'offre.css' %}">
+</head>
+<body>
+
+    <header class="fixed-top">
+   <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light head">
+  <div class="container-fluid long">
+    <a class="navbar-brand app text-white" href="#">appretruct</a>
+   <div class="hum">
+    <button class="navbar-toggler bth1 btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+   
+    <div class="collapse navbar-collapse dev d-flex ju" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item d1">
+          <a class="nav-link lien li1 text-white" href="{% url 'acceuil_administrateur' %}"> &nbsp; &nbsp; acceuil &nbsp; &nbsp;</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link lien1  li" aria-current="page" href="{% url 'offre_administrateur' %}">offre d'emploi</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link    lien li1 text-white " href="{% url 'entreprise_administrateur' %}">&nbsp;entreprise&nbsp;</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link lien li1 text-white" href="{% url 'candidature_administrateur' %}">&nbsp;Candidature&nbsp;</a>
+        </li>
+    
+      
+        <li class="nav-item">
+          <a class="nav-link lien li1 text-white" href="{% url 'contact_administrateur' %}">&nbsp;contact&nbsp;</a>
+        </li>
+        
+</ul>
+  
+    
+    </div>
+  
+   <div>
+    
+          <a class="nav-link lien li12 text-white " href="{% url 'tabbord_administrateur' %}">
+          <div> <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e3e3e3"><path d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm146.5-204.5Q340-521 340-580t40.5-99.5Q421-720 480-720t99.5 40.5Q620-639 620-580t-40.5 99.5Q539-440 480-440t-99.5-40.5ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm100-95.5q47-15.5 86-44.5-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160q53 0 100-15.5ZM523-537q17-17 17-43t-17-43q-17-17-43-17t-43 17q-17 17-17 43t17 43q17 17 43 17t43-17Zm-43-43Zm0 360Z"/></svg>
+            </div> Tableau de bord 
+          </a>
+        
+     </div>
+
+     </div>
+     </div>
+
+</nav>
+</div>
+</header>
+
+<main>
+
+<section class="part1">
+  <div class="longbtn">
+<input type="text" class="button1" placeholder="  quel poste vouler vous candidater....">   
+<button class="btny">
+<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="black"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
+</button>
+  </div>
+ 
+
+</section>
+
+ <section class="option">
+    <button class="ajouter" onclick="formulaire()">ajouter une offre</button>
+ </section>
+
+<section class="container-fluid partie3">
+
+ <div id="offre1" class="row">
+
+
+ </div>
+</section>
+
+
+</main>
+
+
+   <footer class="text-center text-lg-start bg-body-tertiary text-muted">
+
+  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+
+    <div class="me-5 d-none d-lg-block text-white">
+      <span>Contactez-nous sur les réseaux sociaux :</span>
+    </div>
+
+
+ 
+    <div class="lien10">
+<!-- Facebook -->
+<a
+ data-mdb-ripple-init
+  class="btn text-white btn-floating m-1"
+  style="background-color: #3b5998;"
+  href="https://www.facebook.com/jared.22596"
+  target="_blank"
+  role="button">
+  <i class="fab fa-facebook-f"></i>
+</a>
+
+<!-- Twitter / X -->
+<a
+  data-mdb-ripple-init
+  class="btn text-white btn-floating m-1"
+  style="background-color: #000000;"
+  href="https://twitter.com/JARED20090"
+  target="_blank"
+  role="button">
+  <i class="fab fa-x-twitter"></i>
+</a>
+
+<!-- Email -->
+<a
+  data-mdb-ripple-init
+  class="btn text-white btn-floating m-1"
+  style="background-color: #dd4b39;"
+  href="mailto:princejared48@gmail.com"
+  role="button">
+  <i class="fas fa-envelope"></i>
+</a>
+
+<!-- Instagram -->
+<a
+  data-mdb-ripple-init
+  class="btn text-white btn-floating m-1"
+  style="background-color: #ac2bac;"
+  href="https://www.instagram.com/jared925941"
+  target="_blank"
+  role="button"
+>
+  <i class="fab fa-instagram"></i>
+</a>
+
+<!-- Linkedin -->
+<a
+  data-mdb-ripple-init
+  class="btn text-white btn-floating m-1"
+  style="background-color: #0082ca;"
+  href="https://www.linkedin.com/in/jared fone/"
+  target="_blank"
+  role="button"
+>
+  <i class="fab fa-linkedin-in"></i>
+</a>
+
+<!-- Github -->
+<a
+  data-mdb-ripple-init
+  class="btn text-white btn-floating m-1"
+  style="background-color: #333333;"
+  href="https://github.com/princejared48-rgb"
+  target="_blank"
+  role="button"
+>
+  <i class="fab fa-github"></i>
+</a>
+<!-- WhatsApp -->
+<a
+  data-mdb-ripple-init
+  class="btn text-white btn-floating m-1"
+  style="background-color: #25D366;"
+  href="https://wa.me/237677064542?text=Bonjour%20je%20vous%20contacte%20depuis%20votre%20site"
+  target="_blank"
+  role="button"
+>
+  <i class="fab fa-whatsapp"></i>
+</a>
+    </div>
+
+  </section>
+
+
+
+  <section class="foot">
+    <div class="container text-center  text-white text-md-start mt-5">
+   
+      <div class="row mt-3">
+      
+        <div class="f col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3"></i>appretrut
+          </h6>
+          <p class="text-white" >
+       Trouvez les meilleures offres d'emploi et recrutez les meilleurs talents grâce à notre plateforme simple, rapide et sécurisée
+          </p>
+          
+        </div>
+   
+        <div class="f1 col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+         
+          <h6 class="text-uppercase fw-bold mb-4">
+            navigation
+          </h6>
+          <p class="text-white">
+            <a href="#!" class="text-reset">Accueil</a>
+          </p>
+          <p class="text-white">
+            <a href="#!" class="text-reset">Offres d'emploi</a>
+          </p>
+          <p class="text-white">
+            <a href="#!" class="text-reset">Entreprises</a>
+          </p>
+          <p class="text-white" >
+            <a href="#!" class="text-reset">Candidatures</a>
+          </p>
+          <p class="text-white">
+            <a href="#!" class="text-reset">Tableau de bord</a>
+          </p>
+          <p class="text-white">
+            <a href="#!" class="text-reset">Contact</a>
+          </p>
+        </div>
+  
+        <div class="f2 col-md-3 col-lg-2 col-xl-2 mx-auto mb-4  text-white ">
+        
+          <h6 class="text-uppercase fw-bold mb-4">
+            À propos 
+          </h6>
+          <p class="text-white">
+            <a href="#!" class="text-reset  text-white ">FAQ</a>
+          </p>
+          <p class="text-white">
+            <a href="#!" class="text-reset">Conditions d'utilisation</a>
+          </p>
+          <p class="text-white">
+            <a href="#!" class="text-reset">Politique de confidentialité</a>
+          </p>
+          <p class="text-white">
+            <a href="#!" class="text-reset">Nous rejoindre</a>
+          </p>
+        </div>
+   
+        <div class="f3 col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+       
+          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+          <p><i class="fas fa-home me-3"></i><a href=""> Douala,Cameroun</a></p>
+          <p>
+            <a href="mailto:princejared@gmail.com" class="fas h1 fa-envelope me-3"> princejared@gmail.com</a>
+          
+          </p>
+          <p><i class="fas fa-phone me-3"></i> <a href="tel:+237677064542">+237 677 06 45 42</a></p>
+          <p><i class="fas fa-print me-3"></i> <a href="tel:+237699881581">+237 699 88 15 81</a></p>
+        </div>
+   
+      </div>
+    
+    </div>
+  </section>
+ 
+
+ 
+  <div class="text-center p-4 text-white" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2026 Copyright:
+    <a class="text-reset fw-bold" href="mailto:princejared@gmail.com">jared</a> Tout Droit Reserver
+  </div>
+
+</footer>
+
+
+
+<script src="scripts/jsajoutoffre.js"></script>
+<script>
+  
+
+</script>
+</body>
+</html>

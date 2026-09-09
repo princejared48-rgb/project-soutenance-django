@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <title>Contactez-nous | Appretruct</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'appretrut/utilisateur/css/contact.css' %}">
+</head>
+<body>
+
+
+
+<main>
+  <section class="contact-page" aria-labelledby="contact-title">
+    <div class="contact-hero">
+
+      <h1 id="contact-title">Contactez-nous</h1>
+      <p>Nous sommes à votre écoute pour vous accompagner dans votre parcours professionnel.</p>
+    </div>
+
+    <div class="contact-grid">
+      <section class="contact-intro" aria-labelledby="contact-intro-title">
+        <span class="section-label">À votre écoute</span>
+        <h2 id="contact-intro-title">Nous sommes à votre écoute</h2>
+        <p>Que vous soyez candidat à la recherche d'une opportunité ou entreprise à la recherche de talents, notre équipe est disponible pour vous accompagner.</p>
+        <p>Une question, un problème ou une idée ? Écrivez-nous et nous vous répondrons dans les meilleurs délais.</p>
+        <ul class="support-list">
+          <li><i class="fas fa-check" aria-hidden="true"></i> Assistance candidats</li>
+          <li><i class="fas fa-check" aria-hidden="true"></i> Assistance entreprises</li>
+          <li><i class="fas fa-check" aria-hidden="true"></i> Assistance technique</li>
+          <li><i class="fas fa-check" aria-hidden="true"></i> Suggestions</li>
+        </ul>
+      </section>
+
+      <section class="contact-form-panel" aria-labelledby="form-title">
+        <span class="section-label">Votre demande</span>
+        <h2 id="form-title">Envoyez-nous un message</h2>
+        <form class="contact-form" action="mailto:princejared@gmail.com" method="post" enctype="text/plain">
+          <div class="form-field">
+            <label for="fullname">Nom complet</label>
+            <input id="fullname" name="Nom complet" type="text" placeholder="Votre nom et prénom" required>
+          </div>
+          <div class="form-field">
+            <label for="email">Adresse e-mail</label>
+            <input id="email" name="Adresse e-mail" type="email" placeholder="vous@exemple.com" required>
+          </div>
+          <div class="form-field">
+            <label for="subject">Sujet</label>
+            <input id="subject" name="Sujet" type="text" placeholder="Comment pouvons-nous vous aider ?" required>
+          </div>
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" name="Message" rows="4" placeholder="Écrivez votre message ici..." required></textarea>
+          </div>
+          <button class="send-button" type="submit">Envoyer le message <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+        </form>
+      </section>
+    </div>
+
+    <section class="contact-reasons" aria-labelledby="reasons-title">
+      <div class="section-heading">
+        <span class="section-label">Un accompagnement adapté</span>
+        <h2 id="reasons-title">Pourquoi nous contacter ?</h2>
+      </div>
+      <div class="reason-list">
+        <article class="reason-item"><i class="fas fa-life-ring" aria-hidden="true"></i><h3>Assistance</h3><p>Une équipe disponible pour vous guider.</p></article>
+        <article class="reason-item"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i><h3>Signalement</h3><p>Signalez rapidement un problème.</p></article>
+        <article class="reason-item"><i class="fas fa-lightbulb" aria-hidden="true"></i><h3>Suggestion</h3><p>Partagez vos idées d'amélioration.</p></article>
+      </div>
+    </section>
+
+    <section class="contact-details" aria-labelledby="details-title">
+      <div class="section-heading">
+        <span class="section-label">Restons en contact</span>
+        <h2 id="details-title">Une question ? Contactez-nous</h2>
+      </div>
+      <div class="details-list">
+        <a class="detail-item" href="mailto:princejared@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i><span><small>Email</small><strong>princejared@gmail.com</strong></span></a>
+        <a class="detail-item" href="tel:+237677064542"><i class="fas fa-phone" aria-hidden="true"></i><span><small>Téléphone</small><strong>+237 677 06 45 42</strong></span></a>
+        <div class="detail-item"><i class="fas fa-location-dot" aria-hidden="true"></i><span><small>Localisation</small><strong>Douala, Cameroun</strong></span></div>
+      </div>
+    </section>
+  </section>
+</main>
+
+
+
+</body>
+</html>

@@ -1,0 +1,229 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Créer un compte | Appretruct</title>
+
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'appretrut/inscription.css' %}" />
+  </head>
+  <body>
+
+
+
+<header class="container-fluid page-header">
+        <div class="brand">APPRETRUCT</div>
+        <p class="text-white">Rejoignez APPRETRUCT dès aujourd’hui</p>
+      </header>
+
+    <div class="page-shell">
+      
+
+      <main class="signup-card">
+        <section class="welcome-area">
+          <h1>Créer un compte</h1>
+       
+        </section>
+
+        <section class="form-area">
+        <form id="inscriptionForm">
+            <div class="form-grid">
+              <div class="field">
+                <label for="nom2">Nom</label>
+                <input id="nom2" type="text" placeholder="Votre nom"  required/>
+              </div>
+
+              <div class="field">
+                <label for="prenom2">Prénom</label>
+                <input id="prenom2" type="text" placeholder="Votre prénom" required/>
+              </div>
+                 <div class="field full">
+                <label for="date-naissance2">Date de naissance</label>
+                <input id="date-naissance2" type="date" required/>
+              </div>
+
+              <div class="field full">
+                <label for="email2">Adresse e-mail</label>
+                <input id="email2" type="email" placeholder="exemple@email.com" required/>
+              </div>
+
+              <div class="field full">
+                <label for="telephone2">Téléphone</label>
+                <input id="telephone2" type="tel" placeholder="Votre numéro" required/>
+              </div>
+
+              <div class="field full">
+                <label for="ville2">Ville</label>
+                <input id="ville2" type="text" placeholder="Votre ville" required/>
+              </div>
+
+           
+
+              <div class="field full">
+                <label for="sexe2">Sexe</label>
+                <select id="sexe2" required>
+                  <option value="">Sélectionnez</option>
+                  <option value="Masculin">Masculin</option>
+                  <option value="Féminin">Féminin</option>
+                  
+                </select>
+              </div>
+
+              <div class="form-section-title full">Informations professionnelles</div>
+
+                 <div class="field full">
+                <label for="metier2">Métier</label>
+                  <input id="metier2" type="text" placeholder="Votre métier" required/>
+              </div>
+
+                 <div class="field full">
+                <label for="experiance2">Expérience</label>
+                  <input id="experiance2" type="text" placeholder="Ex. : 2 ans dans le domaine" required/>
+              </div>
+                 <div class="field full">
+                <label for="niveau2">Niveau d'études</label>
+                  <input id="niveau2" type="text" placeholder="Ex. : Licence, Master..." required/>
+              </div>
+
+              <div class="field full">
+                <label for="nationalite2">Nationalité</label>
+                <select id="nationalite2" required>
+                  <option value="" selected disabled>Sélectionnez votre nationalité</option>
+                  <optgroup label="Afrique">
+                    <option>Afrique du Sud</option><option>Algérie</option><option>Angola</option><option>Bénin</option>
+                    <option>Botswana</option><option>Burkina Faso</option><option>Burundi</option><option>Cameroun</option>
+                    <option>Cap-Vert</option><option>Comores</option><option>Côte d'Ivoire</option><option>Djibouti</option>
+                    <option>Égypte</option><option>Érythrée</option><option>Eswatini</option><option>Éthiopie</option>
+                    <option>Gabon</option><option>Gambie</option><option>Ghana</option><option>Guinée</option>
+                    <option>Guinée-Bissau</option><option>Guinée équatoriale</option><option>Kenya</option><option>Lesotho</option>
+                    <option>Libéria</option><option>Libye</option><option>Madagascar</option><option>Malawi</option>
+                    <option>Mali</option><option>Maroc</option><option>Maurice</option><option>Mauritanie</option>
+                    <option>Mozambique</option><option>Namibie</option><option>Niger</option><option>Nigeria</option>
+                    <option>Ouganda</option><option>République centrafricaine</option><option>République démocratique du Congo</option>
+                    <option>République du Congo</option><option>Rwanda</option><option>Sao Tomé-et-Principe</option><option>Sénégal</option>
+                    <option>Seychelles</option><option>Sierra Leone</option><option>Somalie</option><option>Soudan</option>
+                    <option>Soudan du Sud</option><option>Tanzanie</option><option>Tchad</option><option>Togo</option>
+                    <option>Tunisie</option><option>Zambie</option><option>Zimbabwe</option>
+                  </optgroup>
+                  <optgroup label="Amérique">
+                    <option>Antigua-et-Barbuda</option><option>Argentine</option><option>Bahamas</option><option>Barbade</option>
+                    <option>Belize</option><option>Bolivie</option><option>Brésil</option><option>Canada</option>
+                    <option>Chili</option><option>Colombie</option><option>Costa Rica</option><option>Cuba</option>
+                    <option>Dominique</option><option>Équateur</option><option>États-Unis</option><option>Grenade</option>
+                    <option>Guatemala</option><option>Guyana</option><option>Haïti</option><option>Honduras</option>
+                    <option>Jamaïque</option><option>Mexique</option><option>Nicaragua</option><option>Panama</option>
+                    <option>Paraguay</option><option>Pérou</option><option>République dominicaine</option><option>Saint-Christophe-et-Niévès</option>
+                    <option>Sainte-Lucie</option><option>Saint-Vincent-et-les-Grenadines</option><option>Salvador</option><option>Suriname</option>
+                    <option>Trinité-et-Tobago</option><option>Uruguay</option><option>Venezuela</option>
+                  </optgroup>
+                  <optgroup label="Asie">
+                    <option>Afghanistan</option><option>Arabie saoudite</option><option>Arménie</option><option>Azerbaïdjan</option>
+                    <option>Bahreïn</option><option>Bangladesh</option><option>Bhoutan</option><option>Brunei</option>
+                    <option>Cambodge</option><option>Chine</option><option>Chypre</option><option>Corée du Nord</option>
+                    <option>Corée du Sud</option><option>Émirats arabes unis</option><option>Géorgie</option><option>Inde</option>
+                    <option>Indonésie</option><option>Irak</option><option>Iran</option><option>Israël</option>
+                    <option>Japon</option><option>Jordanie</option><option>Kazakhstan</option><option>Kirghizistan</option>
+                    <option>Koweït</option><option>Laos</option><option>Liban</option><option>Malaisie</option>
+                    <option>Maldives</option><option>Mongolie</option><option>Myanmar</option><option>Népal</option>
+                    <option>Oman</option><option>Ouzbékistan</option><option>Pakistan</option><option>Palestine</option>
+                    <option>Philippines</option><option>Qatar</option><option>Singapour</option><option>Sri Lanka</option>
+                    <option>Syrie</option><option>Tadjikistan</option><option>Taïwan</option><option>Thaïlande</option>
+                    <option>Timor oriental</option><option>Turkménistan</option><option>Turquie</option><option>Vietnam</option><option>Yémen</option>
+                  </optgroup>
+                  <optgroup label="Europe">
+                    <option>Albanie</option><option>Allemagne</option><option>Andorre</option><option>Autriche</option>
+                    <option>Belgique</option><option>Biélorussie</option><option>Bosnie-Herzégovine</option><option>Bulgarie</option>
+                    <option>Chypre</option><option>Croatie</option><option>Danemark</option><option>Espagne</option>
+                    <option>Estonie</option><option>Finlande</option><option>France</option><option>Grèce</option>
+                    <option>Hongrie</option><option>Irlande</option><option>Islande</option><option>Italie</option>
+                    <option>Lettonie</option><option>Liechtenstein</option><option>Lituanie</option><option>Luxembourg</option>
+                    <option>Macédoine du Nord</option><option>Malte</option><option>Moldavie</option><option>Monaco</option>
+                    <option>Monténégro</option><option>Norvège</option><option>Pays-Bas</option><option>Pologne</option>
+                    <option>Portugal</option><option>République tchèque</option><option>Roumanie</option><option>Royaume-Uni</option>
+                    <option>Russie</option><option>Saint-Marin</option><option>Serbie</option><option>Slovaquie</option>
+                    <option>Slovénie</option><option>Suède</option><option>Suisse</option><option>Ukraine</option><option>Vatican</option>
+                  </optgroup>
+                  <optgroup label="Océanie">
+                    <option>Australie</option><option>Fidji</option><option>Kiribati</option><option>Îles Marshall</option>
+                    <option>Micronésie</option><option>Nauru</option><option>Nouvelle-Zélande</option><option>Palaos</option>
+                    <option>Papouasie-Nouvelle-Guinée</option><option>Samoa</option><option>Salomon</option><option>Tonga</option>
+                    <option>Tuvalu</option><option>Vanuatu</option>
+                  </optgroup>
+                </select>
+              </div>
+
+              <div class="field full">
+                <label for="domaine2">Domaine d’activité</label>
+                     <select id="domaine2" name="domaine" placeholder="Domaine ou secteur" required>
+                    <option value="Informatique & Digital">Informatique & Digital</option>
+                    <option value="Santé & Médical">Santé & Médical</option>
+                    <option value="Industrie & Génie Technique">Industrie & Génie Technique</option>
+                    <option value="BTP & Construction">BTP & Construction</option>
+                    <option value="Finance, Banque & Comptabilité">Finance, Banque & Comptabilité</option>
+                    <option value="Administration & Ressources Humaines">Administration & Ressources Humaines</option>
+                    <option value="Commerce & Relation Client">Commerce & Relation Client</option>
+                    <option value="Marketing & Communication">Marketing & Communication</option>
+                    <option value="Transport & Logistique">Transport & Logistique</option>
+                    <option value="Éducation & Formation">Éducation & Formation</option>
+                    <option value="Agriculture & Agro-industrie">Agriculture & Agro-industrie</option>
+                    <option value="Hôtellerie & Tourisme">Hôtellerie & Tourisme</option>
+                    <option value="Droit & Sécurité">Droit & Sécurité</option>
+                    <option value="Art, Design & Création">Art, Design & Création</option>
+                    </select>
+              </div>
+
+                  <div class="form-section-title full">Profil et sécurité</div>
+
+              <div class="field full">
+                <label for="password2">Mot de passe</label>
+                <input id="password2" type="password" placeholder="••••••••" required/>
+              </div>
+            
+
+              <div class="field full">
+                <label for="confirm2">Confirmer le mot de passe</label>
+                <input id="confirm2" type="password" placeholder="••••••••" required/>
+              </div>
+            </div>
+
+              <div class="field full imgimport">
+                <label for="photo2">Photo de profil</label>
+                 <input type="file"
+           id="photo2"
+           class="form-control profile-input"
+           accept="image/*"
+          >
+            </div>
+            <div class="field full competence-field">
+              <label for="competence2">Compétences</label>
+              <textarea name="competence" id="competence2" placeholder="Présentez vos principales compétences..."></textarea>
+            </div>
+
+            <button class="btn-submit" type="submit" >CRÉER MON COMPTE</button>
+          </form>
+
+          <p class="login-link">
+            Déjà inscrit ?
+            <a href="{% url 'connexion' %}">Se connecter</a>
+          </p>
+        </section>
+      </main>
+    </div>
+
+
+    <script src="inscriptionrecup.js"></script>
+  </body>
+</html>
