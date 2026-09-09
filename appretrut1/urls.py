@@ -14,6 +14,7 @@ urlpatterns = [
     # path('offre_administrateur/', views.offre_administrateur, name='offre_administrateur'),
     # path('candidature_administrateur/', views.candidature_administrateur, name='candidature_administrateur'),
     # path('contact_administrateur/', views.contact_administrateur, name='contact_administrateur'),
-    # path('connexion/', views.connexion, name='connexion'),
-    # path('inscription/', views.inscription, name='inscription'),       
+    path('connexion/', views.connexion, name='connexion'),
+    path('inscription/', views.inscription, name='inscription'), 
+       
 ]

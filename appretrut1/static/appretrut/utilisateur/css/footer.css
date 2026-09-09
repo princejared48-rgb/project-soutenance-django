@@ -1,0 +1,94 @@
+
+.part3{
+    height: 20vh;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 10%;
+    border-top: 3px solid #00d4ff;
+    border-bottom: 3px solid #00d4ff;
+}
+.regarder{
+    color: white;
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.btny{
+    width: 15%;
+    height: 25%;
+    font-size: 20px;
+    text-transform: uppercase;
+    border-radius: 8px;
+    color: white;
+    background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+@keyframes cour {
+    to{
+        transform: scale(1.0);
+    }
+     from{ transform: scale(1.08);}
+}
+.btny:hover{
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+}
+ footer{
+        background-color: rgb(1, 1, 50);
+        color: white;
+         height: 30vh;
+ }
+ .foot a{
+    color: white;
+ }
+ 
+.foot{
+    font-size: 25px;
+    background-color: rgb(1, 1, 50);
+}
+.f p{
+      font-size: 15px;
+   text-decoration: none;
+   color: black; 
+}
+.f1 p {
+   font-size: 15px;
+   text-decoration: none;
+   color: black; 
+}
+.f1 p a{
+    text-decoration: none;
+}
+.f2 p{
+
+   font-size: 15px;
+   text-decoration: none;
+   color: black; 
+}
+.f2 p a{
+    text-decoration: none;
+}
+.f3 p{
+
+   font-size: 15px;
+   text-decoration: none;
+  
+}
+.f3 p a{
+    text-decoration: none;
+
+}
+.h1{
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.lien10 a{
+    height: 5vh;
+    width: 20%;
+
+}

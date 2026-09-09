@@ -30,7 +30,8 @@ def tabbord(request):
 
 # def contact_administrateur(request):    
 #     return render(request, 'appretrut/administrateur/contact_administrateur.html')
-# def connexion(request):    
-#     return render(request, 'appretrut/connexion.html')
-# def inscription(request) :    
-#     return render(request, 'appretrut/inscription/inscription.html')        
+def connexion(request):    
+    return render(request, 'appretrut/connexion.html')
+def inscription(request) :    
+    return render(request, 'appretrut/inscription/inscription.html')
+     

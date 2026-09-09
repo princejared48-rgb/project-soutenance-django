@@ -24,11 +24,11 @@
 
 <body>
 
+{% include 'appretrut/utilisateur/header.html' %}
 
 
 
-
-  <main>
+ <main>
     <section class="profile-page py-5">
 
       <div class="container">
@@ -106,7 +106,7 @@
 
 
                   <!-- NOM -->
-                  <div class="col-6 mb-3">
+                  <div class="col-12 col-sm-6 mb-3">
 
                     <label class="info-label">
                       Nom
@@ -119,7 +119,7 @@
 
 
                   <!-- PRENOM -->
-                  <div class="col-6 mb-3">
+                  <div class="col-12 col-sm-6 mb-3">
 
                     <label class="info-label">
                       Prénom
@@ -133,7 +133,7 @@
 
 
                   <!-- DATE DE NAISSANCE -->
-                  <div class="col-6 mb-3">
+                  <div class="col-12 col-sm-6 mb-3">
 
                     <label class="info-label">
                       Date de naissance
@@ -146,7 +146,7 @@
 
 
                   <!-- SEXE -->
-                  <div class="col-6 mb-3">
+                  <div class="col-12 col-sm-6 mb-3">
 
                     <label class="info-label">
                       Sexe
@@ -159,7 +159,7 @@
 
 
                   <!-- VILLE -->
-                  <div class="col-6 mb-3">
+                  <div class="col-12 col-sm-6 mb-3">
 
                     <label class="info-label">
                       Ville
@@ -207,7 +207,7 @@
 
 
                   <!-- DOMAINE -->
-                  <div class="col-6 mb-3">
+                  <div class="col-12 col-sm-6 mb-3">
 
                     <label class="info-label">
                       Domaine
@@ -221,7 +221,7 @@
 
 
                   <!-- METIER -->
-                  <div class="col-6 mb-3">
+                  <div class="col-12 col-sm-6 mb-3">
 
                     <label class="info-label">
                       Métier
@@ -235,7 +235,7 @@
 
 
                   <!-- EXPERIENCE -->
-                  <div class="col-6 mb-3">
+                  <div class="col-12 col-sm-6 mb-3">
 
                     <label class="info-label">
                       Expérience
@@ -249,7 +249,7 @@
 
 
                   <!-- NIVEAU -->
-                  <div class="col-6 mb-3">
+                  <div class="col-12 col-sm-6 mb-3">
 
                     <label class="info-label">
                       Niveau
@@ -273,7 +273,7 @@
         ========================== -->
             <div class="row g-3">
 
-              <div class="col-md-6">
+              <div class="col-12">
 
                 <div class="card profile-card shadow-sm h-100">
 
@@ -339,9 +339,7 @@
         <div class="modal-content custom-modal">
 
 
-          <!-- =========================
-           HEADER
-      ========================== -->
+        
 
           <div class="modal-header custom-modal-header">
 
@@ -586,10 +584,9 @@
 
 
 
-    <script src="scripts/tabborenvois.js"></script>
-    <script src="scripts/tabbjs.js"></script>
 
-
+{% include 'appretrut/utilisateur/footer.html' %}
 </body>
+
 
 </html>
