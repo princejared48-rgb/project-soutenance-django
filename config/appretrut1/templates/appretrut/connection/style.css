@@ -1,0 +1,214 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(1, 1, 50);
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white; */
+} 
+.body{
+    width: 100%;
+    height: 85vh;
+    background-color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+} 
+.body1{
+    width: 80%;
+    height: 85vh;
+    background-color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+} 
+.content{
+    width: 55%;
+    height: 75%;
+border: solid yellow;
+   box-shadow: 0px 0px 40px yellow;
+   display: flex;
+   
+background: linear-gradient(50deg ,rgb(1, 1, 50) 42%,yellow 100%  );
+}
+.dedans{
+   
+    width: 90%;
+    height: 100%;
+    background-color: transparent;
+    background-color:rgb(1, 1, 50) ;
+    clip-path: polygon(0% 0%, 55% 0%, 100% 100%, 0% 100%);
+
+
+    padding: 3%;
+   
+
+}
+.d1{
+    border-bottom:solid white ;
+    width: 90%;
+}
+.text{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 86%;
+    color: white;
+    padding-left: 5%;
+    font-size: 20px;
+}
+.text::placeholder{
+    color: white;
+    font-size: 25px;
+    text-transform: capitalize;
+}
+
+.content1{
+    padding-top: 3%;
+    width: 65%;
+    height: 100%;
+     display: flex;
+    flex-direction: column;
+
+
+    
+    row-gap: 8%; 
+    
+}
+.login{
+    width: 100%;
+    text-align: center;
+    display: flex;
+   
+    justify-content: center;
+   
+    font-size: 40px;
+}
+a{
+    text-decoration: none;
+    color: yellow;
+}
+.bt{
+    height: 8%;
+    border-radius: 25px;
+}
+.btn{
+    border-radius: 25px;
+    width: 90%;
+    height: 100%;
+  background: linear-gradient(to bottom,yellow,rgb(1, 1, 50)100%);
+    border: solid yellow;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.account{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-transform: capitalize;
+}
+.content2{
+    color: white;
+    
+     width: 25%;
+     height: 50%;
+     display: flex;
+     flex-direction: column;
+     align-items: end;
+     justify-content: center;
+     padding: 5%;
+}
+.mot1{
+    font-size: 70px;text-transform: uppercase;
+    font-weight: bold;
+
+}
+.mot2{
+    font-size: 20px;
+}
+.d1h{
+    border-bottom:solid white ;
+    width: 90%;
+}
+.text2{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 86%;
+    color: white;
+      padding-left: 5%;
+        font-size: 20px;
+}
+.text2::placeholder{
+    color: white;
+    font-size: 25px;
+    text-transform: capitalize;
+}
+.btn:hover{
+
+background: linear-gradient(to bottom,black,yellow);
+}
+
+body{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+.lo{
+    text-decoration: none;
+}
+.colr:hover{
+    color: black;
+    
+}
+
+
+
+.lien{
+    text-transform: capitalize;
+}
+.lien1{
+    text-transform: capitalize;
+  
+}
+header{
+    background-color: rgb(67, 67, 245);
+    border-bottom: 5px solid orange;
+     display: flex;
+ align-items:center;
+ justify-content: center;
+ font-size: 20px;
+ text-transform: uppercase;
+}
+
+/* Unified site header */
+header { position: sticky; top: 0; z-index: 1030; background: linear-gradient(135deg, #081d3c 0%, #124f91 52%, #1d8ed1 100%); border-bottom: 3px solid #ff6b35; box-shadow: 0 10px 28px rgba(8, 29, 60, 0.22); }
+
+
+
+
+.long{
+ width: 100%;
+}
+.long1{
+    width: 70%;
+}
+
+body { font-family: 'Poppins', sans-serif; }
+h1, h2, h3, h4, h5, h6, header .app { font-family: 'Times New Roman', Times, serif; }
+header { background: linear-gradient(135deg, #438fbd 0%, #315d86 55%, #243852 100%) !important; }
+
+body { font-family: 'Poppins', sans-serif; }
+h1, h2, h3, h4, h5, h6, header .app { font-family: 'Times New Roman', Times, serif; }
+header .nav-link, header .connect, header .connect1, header .connect a { font-family: 'Times New Roman', Times, serif; }
+header { position: sticky; top: 0; z-index: 1030; background: linear-gradient(135deg, #438fbd 0%, #315d86 55%, #243852 100%) !important; border-bottom: 3px solid #ff6b35 !important; box-shadow: 0 10px 28px rgba(8, 29, 60, 0.22); }
+header, header .navbar, header .head, header .app, header .nav-link, header .connect, header .connect1, header .connect a { font-family: 'Times New Roman', Times, serif !important; }
+.head { min-height: 78px; height: auto; padding: 0.75rem 1rem; background: transparent !important; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+header .app { color: #fff !important; font-weight: 800; letter-spacing: 0.12em; font-size: 1.15rem; }
