@@ -1,8 +1,9 @@
-body{
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
     font-family: 'Poppins', sans-serif;
     color: #2c3e50;
     background-color: #f8f9fa;
-      
 }
 
 
@@ -176,9 +177,8 @@ header{
     }
 }
 
-/* Unified site header */
-header, header .navbar, header .head, header .app, header .nav-link, header .connect, header .connect1, header .connect a { font-family: 'Times New Roman', Times, serif !important; }
-header { position: sticky; top: 0; z-index: 1030; background: linear-gradient(135deg, #438fbd 0%, #315d86 55%, #243852 100%) !important; border-bottom: 3px solid #ff6b35; box-shadow: 0 10px 28px rgba(8, 29, 60, 0.22); }
+header, header.sticky-top, header.fixed-top, header .navbar, header .head, header .app, header .nav-link, header .connect, header .connect1, header .connect a { font-family: 'Times New Roman', Times, serif !important; }
+header, header.sticky-top, header.fixed-top { position: sticky !important; top: 0 !important; z-index: 1030 !important; background: linear-gradient(135deg, #438fbd 0%, #315d86 55%, #243852 100%) !important; border-bottom: 3px solid #ff6b35 !important; box-shadow: 0 10px 28px rgba(8, 29, 60, 0.22) !important; }
 .head { min-height: 78px; height: auto; padding: 0.75rem 1rem; background: transparent; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .bj { display: flex; flex-direction: row; align-items: center; justify-content: flex-end; gap: 0.5rem; flex-wrap: nowrap; white-space: nowrap; }
 .bj > .connect, .bj > .connect1 { flex: 0 0 auto; width: auto; }

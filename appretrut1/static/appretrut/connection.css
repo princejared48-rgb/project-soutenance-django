@@ -434,24 +434,29 @@ form label {
   }
 }
 
-header.fixed-top {
+header.fixed-top,
+header.sticky-top {
   background: linear-gradient(135deg, #438fbd 0%, #315d86 55%, #243852 100%) !important;
 }
 
-header.fixed-top .head {
+header.fixed-top .head,
+header.sticky-top .head {
   min-height: 76px;
   justify-content: center;
 }
 
-header.fixed-top .long {
+header.fixed-top .long,
+header.sticky-top .long {
   width: auto;
 }
 
-header.fixed-top .app {
+header.fixed-top .app,
+header.sticky-top .app {
   font-size: 1.35rem;
 }
 
-header.fixed-top .page-title {
+header.fixed-top .page-title,
+header.sticky-top .page-title {
   color: #ffffff;
   font-family: 'Times New Roman', Times, serif;
   font-size: 1.15rem;
@@ -466,12 +471,14 @@ body {
     linear-gradient(135deg, #eef7ff 0%, #ffffff 48%, #f7f2f5 100%);
 }
 
-header.fixed-top {
+header.fixed-top,
+header.sticky-top {
   border-bottom: 3px solid #ff8a3d !important;
   box-shadow: 0 12px 28px rgba(8, 29, 60, 0.2);
 }
 
-header.fixed-top .app {
+header.fixed-top .app,
+header.sticky-top .app {
   letter-spacing: 0.16em;
   font-size: 1.3rem;
 }
@@ -587,19 +594,22 @@ body {
     linear-gradient(135deg, #eef5fc 0%, #ffffff 52%, #f3f7fc 100%);
 }
 
-header.fixed-top {
+header.fixed-top,
+header.sticky-top {
   background: linear-gradient(135deg, #438fbd 0%, #315d86 55%, #243852 100%) !important;
   border-bottom: 3px solid #ff6b35 !important;
   border-radius: 0 0 18px 18px;
 }
 
-header.fixed-top .app {
+header.fixed-top .app,
+header.sticky-top .app {
   font-family: 'Poppins', sans-serif !important;
   font-weight: 700;
   letter-spacing: 0.12em;
 }
 
-header.fixed-top .long {
+header.fixed-top .long,
+header.sticky-top .long {
   position: relative;
   width: 100%;
   display: flex;
@@ -607,7 +617,8 @@ header.fixed-top .long {
   justify-content: space-between;
 }
 
-header.fixed-top .app {
+header.fixed-top .app,
+header.sticky-top .app {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);

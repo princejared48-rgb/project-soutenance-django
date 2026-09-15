@@ -1,8 +1,9 @@
-body{
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
     font-family: 'Poppins', sans-serif;
     color: #2c3e50;
     background-color: #f8f9fa;
-      padding-top: 80px;
 }
 
 
@@ -25,54 +26,74 @@ body{
   
 }
 header{
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    border-bottom: 3px solid #00d4ff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    background: linear-gradient(135deg, #091b36 0%, #123a72 35%, #1a5bb5 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 10px 28px rgba(9, 27, 54, 0.2);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
+
 .head{
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    height: 10vh;
-
- width: 100%;
- display: flex;
- align-items:center;
- justify-content: space-around;
-
-
+    background: transparent;
+    min-height: 78px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    gap: 1rem;
 }
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+
 .connect{
- 
-    border:2px solid #00d4ff;
-    margin: 1%;
-    padding: 1%;
-    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    margin: 0.2rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: transparent;
+    background: rgba(255, 255, 255, 0.04);
     text-transform: uppercase;
     font-family: "poppins";
     font-size: 10px;
-    font-weight: bold;
+    font-weight: 700;
     color: white;
     transition: all 0.3s ease;
 }
+
 .connect1{
     color: white;
-    border: 2px solid #ff6b6b;
-    margin: 1%;
-    padding: 1%;
-    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    margin: 0.2rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #ff6b6b;
+    background: linear-gradient(135deg, #00d4ff 0%, #25a6ff 100%);
     text-transform: uppercase;
     font-family: "poppins";
     font-size: 10px;
-    font-weight: bold;
+    font-weight: 700;
     transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 212, 255, 0.24);
 }
+
 @keyframes a1 {
     to{
         transform: scale(1.0);
@@ -81,63 +102,72 @@ header{
          transform: scale(1.05);
     }
 }
+
 .connect:hover{
-    background-color: #00d4ff;
-    color: #1e3c72;
-    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    box-shadow: 0 8px 22px rgba(0, 212, 255, 0.15);
+    transform: translateY(-2px);
 }
+
 .connect1:hover{
-    background-color: #ff5252;
-    box-shadow: 0 4px 15px rgba(255, 82, 82, 0.4);
+    background: linear-gradient(135deg, #25a6ff 0%, #00d4ff 100%);
+    box-shadow: 0 12px 24px rgba(0, 212, 255, 0.38);
+    transform: translateY(-2px);
 }
-
-
-
-
 
 .app{
     text-transform: uppercase;
     color: white;
-    font-weight: 600;
-    letter-spacing: 1px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    font-size: 1.15rem;
+    text-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
 }
-.li{
-   color: white;
-   border-radius: 5px;
-   font-size: 10px;
-   font-weight: bold;
-   background-color: #00d4ff;
-   text-transform: uppercase;
-   padding: 5px 10px;
-   transition: all 0.3s ease;
-}
-.li1{
-  font-size: 10px;
-   font-weight: bold;
-   border-bottom: 2px solid #00d4ff;
-   color: rgb(255, 255, 255);
-   text-transform: uppercase;
-   transition: all 0.3s ease;
-}
+
+.li,
+.li1,
 .li12{
-  font-size: 8px;
-   font-weight: bold;
-   border-bottom: solid #00d4ff 2px;
-   text-align: center;
-   color: rgb(255, 255, 255);
-   text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.95);
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.7rem 1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
 }
-.li12:hover{
-  font-size: 10px;
-   border-radius: 2px;
-   text-transform: uppercase;
-   border-bottom: 2px solid #ff6b6b;
-   border-top: 2px solid #ff6b6b;
-   border-right: none;
-   border-left: none;
-   color: #ff6b6b;
-   transition: all 0.3s ease;
+
+.li{
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
 }
+
+.li1{
+    border-bottom: 2px solid transparent;
+    background: transparent;
+}
+
+.li12{
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(0, 212, 255, 0.14) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.li12:hover,
+.li1:hover,
+.li:hover{
+    text-decoration: none;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
 @keyframes an1 {
     to{
         transform: scale(1.0);
@@ -145,31 +175,6 @@ header{
     from{
          transform: scale(1.1);
     }
-}
-.li1:hover{
-  font-size: 10px;
-   border-radius: 2px;
-   text-transform: uppercase;
-   border-bottom: 2px solid #ff6b6b;
-   border-top: 2px solid #ff6b6b;
-   border-right: none;
-   border-left: none;
-   color: #ff6b6b;
-   transition: all 0.3s ease;
-}
-
-.li:hover{
-    background-color: transparent;
-   border-radius: 2px;
-   color: white;
-   font-weight: bold;
-   font-size: 10px;
-   text-transform: uppercase;
-   border-top: 2px solid #ff6b6b;
-   border-bottom: 2px solid #ff6b6b;
-   border-right: none;
-   border-left: none;
-   transition: all 0.3s ease;
 }
 
 /* Unified site header */
@@ -180,7 +185,8 @@ header { position: sticky; top: 0; z-index: 1030; background: linear-gradient(13
 .bj > .connect, .bj > .connect1 { flex: 0 0 auto; width: auto; }
 .bj > .connect a, .bj > .connect1 a { display: inline-flex; align-items: center; justify-content: center; color: inherit; text-decoration: none; line-height: 1; }
 .bj > .connect div, .bj > .connect1 div { color: inherit !important; }
-.bj > .connect:focus-within, .bj > .connect1:focus-within { outline: 3px solid rgba(255, 190, 70, 0.75); outline-offset: 3px; }
+.bj > .connect:focus, .bj > .connect1:focus,
+.bj > .connect a:focus, .bj > .connect1 a:focus { outline: none; }
 .bj > .connect { min-width: 118px; color: #dff4ff; background: linear-gradient(135deg, rgba(255,255,255,0.13), rgba(39,170,235,0.18)); border-color: rgba(137,220,255,0.7); box-shadow: 0 8px 18px rgba(5, 34, 72, 0.18); }
 .bj > .connect1 { min-width: 124px; color: #fff; background: linear-gradient(135deg, #ff8a3d 0%, #ef3f55 100%); border-color: rgba(255,255,255,0.45); box-shadow: 0 9px 20px rgba(239,63,85,0.3); }
 .bj > .connect:hover, .bj > .connect1:hover { filter: saturate(1.12) brightness(1.06); box-shadow: 0 12px 24px rgba(8, 29, 60, 0.28); }
@@ -198,20 +204,31 @@ header { position: sticky; top: 0; z-index: 1030; background: linear-gradient(13
 .long{
  width: 100%;
 }
-.long1{
-    width: 50%;
-}
+
 .hum{
-    width: 50%;
+    flex: 1;
+    width: auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 0.75rem;
 }
 .dev{
-    width: 100%;
+    width: auto;
+    flex: 1;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+}
+.header-actions{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.4rem;
+    flex-shrink: 0;
+}
+.header-actions > a{
+    white-space: nowrap;
 }
 .but{
     width: 100%;
@@ -226,11 +243,17 @@ ul{
     justify-content: space-around;
 }
 
-li{
-   
-    margin-right: 1%;
+.dev ul{
+    width: auto;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    justify-content: flex-start;
+    gap: 0.35rem;
 }
 
+li{
+    margin-right: 0;
+}
 
 
 main{
