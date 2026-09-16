@@ -17,5 +17,6 @@ urlpatterns = [
     path('contact_administrateur/', views.contact_administrateur, name='contact_administrateur'),
     path('connexion/', views.connexion, name='connexion'),
     path('inscription/', views.inscription, name='inscription'), 
-    path('supprimer-utilisateur/<int:id>/', views.supprimer_utilisateur, name='supprimer_utilisateur'),   
+    path('supprimer-utilisateur/<int:id>/', views.supprimer_utilisateur, name='supprimer_utilisateur'),
+    path('modifier-profil/', views.modifier_profil, name='modifier_profil'),   
 ]

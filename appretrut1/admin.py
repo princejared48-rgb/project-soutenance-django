@@ -1,6 +1,4 @@
 from django.contrib import admin
+from .models import utili
 
-
-# Register your models here.
-
-
+admin.site.register(utili)

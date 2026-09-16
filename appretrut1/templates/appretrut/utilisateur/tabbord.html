@@ -6,849 +6,929 @@
 
 <head>
 
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-    crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous">
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl-+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous">
+    </script>
 
-  <title>Profil | Appretruct</title>
+    <title>Profil | Appretruct</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  <link rel="stylesheet"
-    href="{% static 'appretrut/utilisateur/css/tabbord.css' %}">
+    <link
+        rel="stylesheet"
+        href="{% static 'appretrut/utilisateur/css/tabbord.css' %}">
 
 </head>
 
 
 <body>
 
-
 {% include 'appretrut/utilisateur/header.html' %}
 
 
 <main>
 
-  <section class="profile-page py-5">
+    <section class="profile-page py-5">
 
-    <div class="container">
+        <div class="container">
+
+            <div class="dashboard-hero">
+
+                <div>
+
+                    <span class="eyebrow">
+                        Espace personnel
+                    </span>
+
+                    <h1>
+                        PROFIL
+                    </h1>
+
+                    <p class="dashboard-subtitle">
+                        Gérez vos informations et présentez votre parcours professionnel.
+                    </p>
+
+                </div>
+
+            </div>
 
 
-      <div class="dashboard-hero">
+            <div class="row g-4 photo">
 
-        <div>
 
-          <span class="eyebrow">
-            Espace personnel
-          </span>
+                <!-- =========================
+                     COLONNE GAUCHE
+                ========================== -->
 
-          <h1>
-            PROFIL
-          </h1>
+                <div class="col-lg-4">
 
-          <p class="dashboard-subtitle">
-            Gérez vos informations et présentez votre parcours professionnel.
-          </p>
+                    <div class="card profile-card shadow-sm p-4 profile-sidebar">
+
+                        <div class="text-center">
+
+
+                            <!-- =========================
+                                 PHOTO DE PROFIL
+                            ========================== -->
+
+                            {% if utilisateur.photo %}
+
+                                <img
+                                    id="photoProfil"
+                                    src="{{ utilisateur.photo.url }}"
+                                    class="rounded-circle"
+                                    style="cursor: pointer; width: 200px; height: 200px; object-fit: cover;"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#photoModal"
+                                    alt="Photo de profil">
+
+                            {% else %}
+
+                                <img
+                                    id="photoProfil"
+                                    src=""
+                                    class="rounded-circle"
+                                    style="cursor: pointer; width: 200px; height: 200px; object-fit: cover;"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#photoModal"
+                                    alt="Photo de profil">
+
+                            {% endif %}
+
+
+                            <!-- BOUTON MODIFIER -->
+
+                            <button
+                                type="button"
+                                class="btn btn-primary modal-open-btn"
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+
+                                Modifier
+
+                            </button>
+
+
+                            <!-- NOM DE L'UTILISATEUR -->
+
+                            <h2 class="profile-sidebar-title">
+
+                                {{ utilisateur.prenom }}
+                                {{ utilisateur.nom }}
+
+                            </h2>
+
+
+                            <!-- MÉTIER -->
+
+                            {% if utilisateur.metier %}
+
+                                <p class="profile-sidebar-text">
+
+                                    {{ utilisateur.metier }}
+
+                                </p>
+
+                            {% else %}
+
+                                <p class="profile-sidebar-text">
+
+                                    Ajoutez vos informations professionnelles.
+
+                                </p>
+
+                            {% endif %}
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     COLONNE DROITE
+                ========================== -->
+
+                <div class="col-lg-8">
+
+
+                    <!-- =========================
+                         INFORMATIONS PERSONNELLES
+                    ========================== -->
+
+                    <div class="card profile-card shadow-sm mb-4">
+
+                        <div class="card-body">
+
+                            <h3 class="h6 text-uppercase text-muted mb-4">
+
+                                Informations personnelles
+
+                            </h3>
+
+
+                            <div class="row">
+
+
+                                <!-- NOM -->
+
+                                <div class="col-12 col-sm-6 mb-3">
+
+                                    <label class="info-label">
+                                        Nom
+                                    </label>
+
+                                    <input
+                                        class="form-control profile-input"
+                                        type="text"
+                                        id="nom"
+                                        value="{{ utilisateur.nom }}"
+                                        placeholder="Votre nom"
+                                        readonly>
+
+                                </div>
+
+
+                                <!-- PRENOM -->
+
+                                <div class="col-12 col-sm-6 mb-3">
+
+                                    <label class="info-label">
+                                        Prénom
+                                    </label>
+
+                                    <input
+                                        class="form-control profile-input"
+                                        type="text"
+                                        id="prenom"
+                                        value="{{ utilisateur.prenom }}"
+                                        placeholder="Votre prénom"
+                                        readonly>
+
+                                </div>
+
+
+                                <!-- MOT DE PASSE -->
+
+                                <div class="col-12 mb-3">
+
+                                    <label class="info-label">
+                                        Mot de passe
+                                    </label>
+
+                                    <input
+                                        class="form-control profile-input"
+                                        type="password"
+                                        id="motdepasse"
+                                        value="{{ utilisateur.motdepasse }}"
+                                        placeholder="Votre mot de passe"
+                                        disabled>
+
+                                </div>
+
+
+                                <!-- DATE DE NAISSANCE -->
+
+                                <div class="col-12 col-sm-6 mb-3">
+
+                                    <label class="info-label">
+                                        Date de naissance
+                                    </label>
+
+                                    <input
+                                        class="form-control profile-input"
+                                        type="date"
+                                        id="naissance"
+                                        value="{{ utilisateur.date_naissance|date:'Y-m-d' }}"
+                                        readonly>
+
+                                </div>
+
+
+                                <!-- SEXE -->
+
+                                <div class="col-12 col-sm-6 mb-3">
+
+                                    <label class="info-label">
+                                        Sexe
+                                    </label>
+
+                                    <input
+                                        class="form-control profile-input"
+                                        type="text"
+                                        id="sexe"
+                                        value="{{ utilisateur.sexe }}"
+                                        placeholder="Sexe"
+                                        readonly>
+
+                                </div>
+
+
+                                <!-- EMAIL -->
+
+                                <div class="col-12 col-sm-6 mb-3">
+
+                                    <label class="info-label">
+                                        Email
+                                    </label>
+
+                                    <input
+                                        class="form-control profile-input"
+                                        type="email"
+                                        id="email"
+                                        value="{{ utilisateur.email }}"
+                                        placeholder="Votre email"
+                                        readonly>
+
+                                </div>
+
+
+                                <!-- TELEPHONE -->
+
+                                <div class="col-12 col-sm-6 mb-3">
+
+                                    <label class="info-label">
+                                        Téléphone
+                                    </label>
+
+                                    <input
+                                        class="form-control profile-input"
+                                        type="text"
+                                        id="telephone"
+                                        value="{{ utilisateur.telephone }}"
+                                        placeholder="Votre téléphone"
+                                        readonly>
+
+                                </div>
+
+
+                                <!-- VILLE -->
+
+                                <div class="col-12 col-sm-6 mb-3">
+
+                                    <label class="info-label">
+                                        Ville
+                                    </label>
+
+                                    <input
+                                        class="form-control profile-input"
+                                        type="text"
+                                        id="ville"
+                                        value="{{ utilisateur.ville }}"
+                                        placeholder="Votre ville"
+                                        readonly>
+
+                                </div>
+
+
+                                <!-- NATIONALITE -->
+
+                                <div class="col-12 mb-3">
+
+                                    <label class="info-label">
+                                        Nationalité
+                                    </label>
+
+                                    <input
+                                        class="form-control profile-input"
+                                        type="text"
+                                        id="nationalite"
+                                        value="{{ utilisateur.nationalite }}"
+                                        placeholder="Votre nationalité"
+                                        readonly>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================
+                         INFORMATIONS PROFESSIONNELLES
+                    ========================== -->
+
+                    <div class="card profile-card shadow-sm mb-4">
+
+                        <div class="card-body">
+
+                            <h3 class="h6 text-uppercase text-muted mb-4">
+
+                                Informations professionnelles
+
+                            </h3>
+
+
+                            <div class="row">
+
+
+                                <!-- DOMAINE -->
+
+                                <div class="col-12 col-sm-6 mb-3">
+
+                                    <label class="info-label">
+                                        Domaine
+                                    </label>
+
+                                    <input
+                                        class="form-control profile-input"
+                                        type="text"
+                                        id="domaine"
+                                        value="{{ utilisateur.domaine }}"
+                                        placeholder="Votre domaine"
+                                        readonly>
+
+                                </div>
+
+
+                                <!-- METIER -->
+
+                                <div class="col-12 col-sm-6 mb-3">
+
+                                    <label class="info-label">
+                                        Métier
+                                    </label>
+
+                                    <input
+                                        class="form-control profile-input"
+                                        type="text"
+                                        id="metier"
+                                        value="{{ utilisateur.metier }}"
+                                        placeholder="Votre métier"
+                                        readonly>
+
+                                </div>
+
+
+                                <!-- EXPERIENCE -->
+
+                                <div class="col-12 col-sm-6 mb-3">
+
+                                    <label class="info-label">
+                                        Expérience
+                                    </label>
+
+                                    <input
+                                        class="form-control profile-input"
+                                        type="text"
+                                        id="exp"
+                                        value="{{ utilisateur.experience }}"
+                                        placeholder="Années d'expérience"
+                                        readonly>
+
+                                </div>
+
+
+                                <!-- NIVEAU -->
+
+                                <div class="col-12 col-sm-6 mb-3">
+
+                                    <label class="info-label">
+                                        Niveau
+                                    </label>
+
+                                    <input
+                                        class="form-control profile-input"
+                                        type="text"
+                                        id="niveau"
+                                        value="{{ utilisateur.niveau_etudes }}"
+                                        placeholder="Niveau actuel"
+                                        readonly>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================
+                         COMPETENCES
+                    ========================== -->
+
+                    <div class="row g-3">
+
+                        <div class="col-12">
+
+                            <div class="card profile-card shadow-sm h-100">
+
+                                <div class="card-body">
+
+                                    <h3 class="h6 text-uppercase text-muted mb-4">
+
+                                        Compétences
+
+                                    </h3>
+
+                                    <textarea
+                                        class="profile-textarea"
+                                        id="competences"
+                                        readonly>{{ utilisateur.competence }}</textarea>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
 
         </div>
 
-      </div>
+    </section>
 
 
-      <div class="row g-4 photo">
+    <!-- =====================================================
+         MODAL : AFFICHAGE DE LA PHOTO
+    ====================================================== -->
 
+    <div
+        class="modal fade"
+        id="photoModal"
+        tabindex="-1"
+        aria-hidden="true">
 
-        <!-- =========================
-             COLONNE GAUCHE
-        ========================== -->
+        <div class="modal-dialog modal-dialog-centered">
 
-        <div class="col-lg-4">
+            <div class="modal-content">
 
-          <div class="card profile-card shadow-sm p-4 profile-sidebar">
+                <div class="modal-body text-center">
 
-            <div class="text-center">
+                    {% if utilisateur.photo %}
 
+                        <img
+                            src="{{ utilisateur.photo.url }}"
+                            class="img-fluid"
+                            alt="Photo de profil">
 
-              <!-- =========================
-                   PHOTO DE PROFIL
-              ========================== -->
+                    {% else %}
 
-              {% if utilisateur.photo %}
+                        <img
+                            src="{% static 'appretrut/utilisateur/images/profil.jpg' %}"
+                            class="img-fluid"
+                            alt="Photo de profil">
 
-                <img
-                  id="photoProfil"
-                  src="{{ utilisateur.photo.url }}"
-                  class="rounded-circle"
-                  style="cursor: pointer; width: 200px; height: 200px; object-fit: cover;"
-                  data-bs-toggle="modal"
-                  data-bs-target="#photoModal"
-                  alt="Photo de profil"
-                >
+                    {% endif %}
 
-              {% else %}
-
-                <img
-                  id="photoProfil"
-                  src="{% static 'appretrut/utilisateur/images/profil.jpg' %}"
-                  class="rounded-circle"
-                  style="cursor: pointer; width: 200px; height: 200px; object-fit: cover;"
-                  data-bs-toggle="modal"
-                  data-bs-target="#photoModal"
-                  alt="Photo de profil"
-                >
-
-              {% endif %}
-
-
-              <!-- BOUTON MODIFIER -->
-
-              <button
-                type="button"
-                class="btn btn-primary modal-open-btn"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal">
-
-                Modifier
-
-              </button>
-
-
-              <!-- NOM DE L'UTILISATEUR -->
-
-              <h2 class="profile-sidebar-title">
-
-                {{ utilisateur.prenom }}
-                {{ utilisateur.nom }}
-
-              </h2>
-
-
-              <!-- MÉTIER -->
-
-              {% if utilisateur.metier %}
-
-                <p class="profile-sidebar-text">
-
-                  {{ utilisateur.metier }}
-
-                </p>
-
-              {% else %}
-
-                <p class="profile-sidebar-text">
-
-                  Ajoutez vos informations professionnelles.
-
-                </p>
-
-              {% endif %}
-
+                </div>
 
             </div>
-
-          </div>
 
         </div>
-
-
-        <!-- =========================
-             COLONNE DROITE
-        ========================== -->
-
-        <div class="col-lg-8">
-
-
-          <!-- =========================
-               INFORMATIONS PERSONNELLES
-          ========================== -->
-
-          <div class="card profile-card shadow-sm mb-4">
-
-            <div class="card-body">
-
-              <h3 class="h6 text-uppercase text-muted mb-4">
-
-                Informations personnelles
-
-              </h3>
-
-
-              <div class="row">
-
-
-                <!-- NOM -->
-
-                <div class="col-12 col-sm-6 mb-3">
-
-                  <label class="info-label">
-                    Nom
-                  </label>
-
-                  <input
-                    class="form-control profile-input"
-                    type="text"
-                    id="nom"
-                    value="{{ utilisateur.nom }}"
-                    placeholder="Votre nom"
-                    readonly>
-
-                </div>
-
-
-                <!-- PRENOM -->
-
-                <div class="col-12 col-sm-6 mb-3">
-
-                  <label class="info-label">
-                    Prénom
-                  </label>
-
-                  <input
-                    class="form-control profile-input"
-                    type="text"
-                    id="prenom"
-                    value="{{ utilisateur.prenom }}"
-                    placeholder="Votre prénom"
-                    readonly>
-
-                </div>
-
-
-                <!-- DATE DE NAISSANCE -->
-
-                <div class="col-12 col-sm-6 mb-3">
-
-                  <label class="info-label">
-                    Date de naissance
-                  </label>
-
-                  <input
-                    class="form-control profile-input"
-                    type="date"
-                    id="naissance"
-                    value="{{ utilisateur.date_naissance|date:'Y-m-d' }}"
-                    readonly>
-
-                </div>
-
-
-                <!-- SEXE -->
-
-                <div class="col-12 col-sm-6 mb-3">
-
-                  <label class="info-label">
-                    Sexe
-                  </label>
-
-                  <input
-                    class="form-control profile-input"
-                    type="text"
-                    id="sexe"
-                    value="{{ utilisateur.sexe }}"
-                    placeholder="Sexe"
-                    readonly>
-
-                </div>
-
-
-                <!-- EMAIL -->
-
-                <div class="col-12 col-sm-6 mb-3">
-
-                  <label class="info-label">
-                    Email
-                  </label>
-
-                  <input
-                    class="form-control profile-input"
-                    type="email"
-                    id="email"
-                    value="{{ utilisateur.email }}"
-                    placeholder="Votre email"
-                    readonly>
-
-                </div>
-
-
-                <!-- TELEPHONE -->
-
-                <div class="col-12 col-sm-6 mb-3">
-
-                  <label class="info-label">
-                    Téléphone
-                  </label>
-
-                  <input
-                    class="form-control profile-input"
-                    type="text"
-                    id="telephone"
-                    value="{{ utilisateur.telephone }}"
-                    placeholder="Votre téléphone"
-                    readonly>
-
-                </div>
-
-
-                <!-- VILLE -->
-
-                <div class="col-12 col-sm-6 mb-3">
-
-                  <label class="info-label">
-                    Ville
-                  </label>
-
-                  <input
-                    class="form-control profile-input"
-                    type="text"
-                    id="ville"
-                    value="{{ utilisateur.ville }}"
-                    placeholder="Votre ville"
-                    readonly>
-
-                </div>
-
-
-                <!-- NATIONALITE -->
-
-                <div class="col-12 mb-3">
-
-                  <label class="info-label">
-                    Nationalité
-                  </label>
-
-                  <input
-                    class="form-control profile-input"
-                    type="text"
-                    id="nationalite"
-                    value="{{ utilisateur.nationalite }}"
-                    placeholder="Votre nationalité"
-                    readonly>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <!-- =========================
-               INFORMATIONS PROFESSIONNELLES
-          ========================== -->
-
-          <div class="card profile-card shadow-sm mb-4">
-
-            <div class="card-body">
-
-              <h3 class="h6 text-uppercase text-muted mb-4">
-
-                Informations professionnelles
-
-              </h3>
-
-
-              <div class="row">
-
-
-                <!-- DOMAINE -->
-
-                <div class="col-12 col-sm-6 mb-3">
-
-                  <label class="info-label">
-                    Domaine
-                  </label>
-
-                  <input
-                    class="form-control profile-input"
-                    type="text"
-                    id="domaine"
-                    value="{{ utilisateur.domaine }}"
-                    placeholder="Votre domaine"
-                    readonly>
-
-                </div>
-
-
-                <!-- METIER -->
-
-                <div class="col-12 col-sm-6 mb-3">
-
-                  <label class="info-label">
-                    Métier
-                  </label>
-
-                  <input
-                    class="form-control profile-input"
-                    type="text"
-                    id="metier"
-                    value="{{ utilisateur.metier }}"
-                    placeholder="Votre métier"
-                    readonly>
-
-                </div>
-
-
-                <!-- EXPERIENCE -->
-
-                <div class="col-12 col-sm-6 mb-3">
-
-                  <label class="info-label">
-                    Expérience
-                  </label>
-
-                  <input
-                    class="form-control profile-input"
-                    type="text"
-                    id="exp"
-                    value="{{ utilisateur.experience }}"
-                    placeholder="Années d'expérience"
-                    readonly>
-
-                </div>
-
-
-                <!-- NIVEAU -->
-
-                <div class="col-12 col-sm-6 mb-3">
-
-                  <label class="info-label">
-                    Niveau
-                  </label>
-
-                  <input
-                    class="form-control profile-input"
-                    type="text"
-                    id="niveau"
-                    value="{{ utilisateur.niveau_etudes }}"
-                    placeholder="Niveau actuel"
-                    readonly>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <!-- =========================
-               COMPETENCES
-          ========================== -->
-
-          <div class="row g-3">
-
-            <div class="col-12">
-
-              <div class="card profile-card shadow-sm h-100">
-
-                <div class="card-body">
-
-                  <h3 class="h6 text-uppercase text-muted mb-4">
-
-                    Compétences
-
-                  </h3>
-
-
-                  <textarea
-                    class="profile-textarea"
-                    name="competences"
-                    id="competences"
-                    readonly>{{ utilisateur.competence }}</textarea>
-
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-        </div>
-
-      </div>
 
     </div>
 
-  </section>
+
+    <!-- =====================================================
+         MODAL : MODIFICATION DU PROFIL
+    ====================================================== -->
+
+    <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+
+            <div class="modal-content custom-modal">
 
 
-  <!-- =====================================================
-       MODAL : AFFICHAGE DE LA PHOTO
-  ===================================================== -->
+                <!-- HEADER -->
 
-  <div
-    class="modal fade"
-    id="photoModal"
-    tabindex="-1"
-    aria-labelledby="photoModalLabel"
-    aria-hidden="true">
+                <div class="modal-header custom-modal-header">
 
-    <div class="modal-dialog modal-dialog-centered">
+                    <div>
 
-      <div class="modal-content">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            Modifier mon profil
+                        </h5>
 
-        <div class="modal-body text-center">
+                        <p class="modal-subtitle">
+                            Mettez à jour vos informations personnelles et professionnelles
+                        </p>
+
+                    </div>
 
 
-          {% if utilisateur.photo %}
+                    <button
+                        type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal"
+                        aria-label="Fermer">
+                    </button>
 
-            <img
-              id="photoGrande"
-              src="{{ utilisateur.photo.url }}"
-              class="img-fluid"
-              alt="Photo de profil">
+                </div>
 
-          {% else %}
 
-            <img
-              id="photoGrande"
-              src="{% static 'appretrut/utilisateur/images/profil.jpg' %}"
-              class="img-fluid"
-              alt="Photo de profil">
+                <!-- FORMULAIRE -->
 
-          {% endif %}
+                <form
+                    method="POST"
+                    action="{% url 'modifier_profil' %}"
+                    enctype="multipart/form-data">
 
+                    {% csrf_token %}
+
+
+                    <!-- CORPS -->
+
+                    <div class="modal-body custom-modal-body">
+
+                        <div class="row g-3">
+
+
+                            <!-- PHOTO -->
+
+                            <div class="col-12">
+
+                                <label class="info-label">
+                                    Changer la photo de profil
+                                </label>
+
+                                <input
+                                    type="file"
+                                    name="photo"
+                                    id="photo1"
+                                    class="form-control profile-input"
+                                    accept="image/*">
+
+                            </div>
+
+
+                            <!-- NOM -->
+
+                            <div class="col-md-6">
+
+                                <label class="info-label">
+                                    Nom
+                                </label>
+
+                                <input
+                                    class="form-control profile-input"
+                                    type="text"
+                                    name="nom"
+                                    id="nom1"
+                                    value="{{ utilisateur.nom }}"
+                                    placeholder="Votre nom">
+
+                            </div>
+
+
+                            <!-- PRENOM -->
+
+                            <div class="col-md-6">
+
+                                <label class="info-label">
+                                    Prénom
+                                </label>
+
+                                <input
+                                    class="form-control profile-input"
+                                    type="text"
+                                    name="prenom"
+                                    id="prenom1"
+                                    value="{{ utilisateur.prenom }}"
+                                    placeholder="Votre prénom">
+
+                            </div>
+
+
+                            <!-- DATE DE NAISSANCE -->
+
+                            <div class="col-md-6">
+
+                                <label class="info-label">
+                                    Date de naissance
+                                </label>
+
+                                <input
+                                    class="form-control profile-input"
+                                    type="date"
+                                    name="date_naissance"
+                                    id="naissance1"
+                                    value="{{ utilisateur.date_naissance|date:'Y-m-d' }}">
+
+                            </div>
+
+
+                            <!-- SEXE -->
+
+                            <div class="col-md-6">
+
+                                <label class="info-label">
+                                    Sexe
+                                </label>
+
+                                <input
+                                    class="form-control profile-input"
+                                    type="text"
+                                    name="sexe"
+                                    id="sexe1"
+                                    value="{{ utilisateur.sexe }}"
+                                    placeholder="Sexe">
+
+                            </div>
+
+
+                            <!-- EMAIL -->
+
+                            <div class="col-md-6">
+
+                                <label class="info-label">
+                                    Email
+                                </label>
+
+                                <input
+                                    class="form-control profile-input"
+                                    type="email"
+                                    name="email"
+                                    id="email1"
+                                    value="{{ utilisateur.email }}"
+                                    placeholder="Votre email">
+
+                            </div>
+
+
+                            <!-- TELEPHONE -->
+
+                            <div class="col-md-6">
+
+                                <label class="info-label">
+                                    Téléphone
+                                </label>
+
+                                <input
+                                    class="form-control profile-input"
+                                    type="text"
+                                    name="telephone"
+                                    id="telephone1"
+                                    value="{{ utilisateur.telephone }}"
+                                    placeholder="Votre téléphone">
+
+                            </div>
+
+
+                            <!-- VILLE -->
+
+                            <div class="col-md-6">
+
+                                <label class="info-label">
+                                    Ville
+                                </label>
+
+                                <input
+                                    class="form-control profile-input"
+                                    type="text"
+                                    name="ville"
+                                    id="ville1"
+                                    value="{{ utilisateur.ville }}"
+                                    placeholder="Votre ville">
+
+                            </div>
+
+
+                            <!-- NATIONALITE -->
+
+                            <div class="col-md-6">
+
+                                <label class="info-label">
+                                    Nationalité
+                                </label>
+
+                                <input
+                                    class="form-control profile-input"
+                                    type="text"
+                                    name="nationalite"
+                                    id="nationalite1"
+                                    value="{{ utilisateur.nationalite }}"
+                                    placeholder="Votre nationalité">
+
+                            </div>
+
+
+                            <!-- MOT DE PASSE -->
+
+                            <div class="col-12">
+
+                                <label class="info-label">
+                                    Mot de passe
+                                </label>
+
+                                <input
+                                    class="form-control profile-input"
+                                    type="password"
+                                    name="motdepasse"
+                                    id="motdepasse1"
+                                    placeholder="Nouveau mot de passe">
+
+                            </div>
+
+
+                            <!-- DOMAINE -->
+
+                            <div class="col-md-6">
+
+                                <label class="info-label">
+                                    Domaine
+                                </label>
+
+                                <input
+                                    class="form-control profile-input"
+                                    type="text"
+                                    name="domaine"
+                                    id="domaine1"
+                                    value="{{ utilisateur.domaine }}"
+                                    placeholder="Votre domaine">
+
+                            </div>
+
+
+                            <!-- METIER -->
+
+                            <div class="col-md-6">
+
+                                <label class="info-label">
+                                    Métier
+                                </label>
+
+                                <input
+                                    class="form-control profile-input"
+                                    type="text"
+                                    name="metier"
+                                    id="metier1"
+                                    value="{{ utilisateur.metier }}"
+                                    placeholder="Votre métier">
+
+                            </div>
+
+
+                            <!-- EXPERIENCE -->
+
+                            <div class="col-md-6">
+
+                                <label class="info-label">
+                                    Expérience
+                                </label>
+
+                                <input
+                                    class="form-control profile-input"
+                                    type="text"
+                                    name="experience"
+                                    id="exp1"
+                                    value="{{ utilisateur.experience }}"
+                                    placeholder="Années d'expérience">
+
+                            </div>
+
+
+                            <!-- NIVEAU -->
+
+                            <div class="col-md-6">
+
+                                <label class="info-label">
+                                    Niveau
+                                </label>
+
+                                <input
+                                    class="form-control profile-input"
+                                    type="text"
+                                    name="niveau_etudes"
+                                    id="niveau1"
+                                    value="{{ utilisateur.niveau_etudes }}"
+                                    placeholder="Niveau actuel">
+
+                            </div>
+
+
+                            <!-- COMPETENCES -->
+
+                            <div class="col-12">
+
+                                <label class="info-label">
+                                    Compétences
+                                </label>
+
+                                <textarea
+                                    class="profile-textarea"
+                                    name="competence"
+                                    id="competences1"
+                                    placeholder="Décrivez vos compétences ou votre expérience...">{{ utilisateur.competence }}</textarea>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FOOTER -->
+
+                    <div class="modal-footer custom-modal-footer">
+
+                        <button
+                            type="button"
+                            class="btn btn-outline-secondary"
+                            data-bs-dismiss="modal">
+
+                            Annuler
+
+                        </button>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary custom-submit-btn">
+
+                            Enregistrer
+
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+            </div>
 
         </div>
-
-      </div>
 
     </div>
-
-  </div>
-
-
-  <!-- =====================================================
-       MODAL : MODIFICATION DU PROFIL
-  ===================================================== -->
-
-  <div
-    class="modal fade"
-    id="exampleModal"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-
-      <div class="modal-content custom-modal">
-
-
-        <div class="modal-header custom-modal-header">
-
-          <div>
-
-            <h5 class="modal-title" id="exampleModalLabel">
-
-              Modifier mon profil
-
-            </h5>
-
-            <p class="modal-subtitle">
-
-              Mettez à jour vos informations personnelles et professionnelles
-
-            </p>
-
-          </div>
-
-
-          <button
-            type="button"
-            class="btn-close btn-close-white"
-            data-bs-dismiss="modal"
-            aria-label="Fermer">
-
-          </button>
-
-        </div>
-
-
-        <!-- =========================
-             CORPS
-        ========================== -->
-
-        <div class="modal-body custom-modal-body">
-
-          <div class="row g-3">
-
-
-            <!-- PHOTO -->
-
-            <div class="col-12">
-
-              <label class="info-label">
-
-                Changer la photo de profil
-
-              </label>
-
-              <input
-                type="file"
-                id="photo1"
-                class="form-control profile-input"
-                accept="image/*">
-
-            </div>
-
-
-            <!-- NOM -->
-
-            <div class="col-md-6">
-
-              <label class="info-label">
-                Nom
-              </label>
-
-              <input
-                class="form-control profile-input"
-                type="text"
-                id="nom1"
-                value="{{ utilisateur.nom }}"
-                placeholder="Votre nom">
-
-            </div>
-
-
-            <!-- PRENOM -->
-
-            <div class="col-md-6">
-
-              <label class="info-label">
-                Prénom
-              </label>
-
-              <input
-                class="form-control profile-input"
-                type="text"
-                id="prenom1"
-                value="{{ utilisateur.prenom }}"
-                placeholder="Votre prénom">
-
-            </div>
-
-
-            <!-- DATE DE NAISSANCE -->
-
-            <div class="col-md-6">
-
-              <label class="info-label">
-                Date de naissance
-              </label>
-
-              <input
-                class="form-control profile-input"
-                id="naissance1"
-                type="date"
-                value="{{ utilisateur.date_naissance|date:'Y-m-d' }}">
-
-            </div>
-
-
-            <!-- SEXE -->
-
-            <div class="col-md-6">
-
-              <label class="info-label">
-                Sexe
-              </label>
-
-              <input
-                class="form-control profile-input"
-                type="text"
-                id="sexe1"
-                value="{{ utilisateur.sexe }}"
-                placeholder="Sexe">
-
-            </div>
-
-
-            <!-- VILLE -->
-
-            <div class="col-md-6">
-
-              <label class="info-label">
-                Ville
-              </label>
-
-              <input
-                class="form-control profile-input"
-                type="text"
-                id="ville1"
-                value="{{ utilisateur.ville }}"
-                placeholder="Votre ville">
-
-            </div>
-
-
-            <!-- NATIONALITE -->
-
-            <div class="col-12">
-
-              <label class="info-label">
-                Nationalité
-              </label>
-
-              <input
-                class="form-control profile-input"
-                type="text"
-                id="nationalite1"
-                value="{{ utilisateur.nationalite }}"
-                placeholder="Votre nationalité">
-
-            </div>
-
-
-            <!-- DOMAINE -->
-
-            <div class="col-md-6">
-
-              <label class="info-label">
-                Domaine
-              </label>
-
-              <input
-                class="form-control profile-input"
-                type="text"
-                id="domaine1"
-                value="{{ utilisateur.domaine }}"
-                placeholder="Votre domaine">
-
-            </div>
-
-
-            <!-- METIER -->
-
-            <div class="col-md-6">
-
-              <label class="info-label">
-                Métier
-              </label>
-
-              <input
-                class="form-control profile-input"
-                type="text"
-                id="metier1"
-                value="{{ utilisateur.metier }}"
-                placeholder="Votre métier">
-
-            </div>
-
-
-            <!-- EXPERIENCE -->
-
-            <div class="col-md-6">
-
-              <label class="info-label">
-                Expérience
-              </label>
-
-              <input
-                class="form-control profile-input"
-                type="text"
-                id="exp1"
-                value="{{ utilisateur.experience }}"
-                placeholder="Années d'expérience">
-
-            </div>
-
-
-            <!-- NIVEAU -->
-
-            <div class="col-md-6">
-
-              <label class="info-label">
-                Niveau
-              </label>
-
-              <input
-                class="form-control profile-input"
-                id="niveau1"
-                type="text"
-                value="{{ utilisateur.niveau_etudes }}"
-                placeholder="Niveau actuel">
-
-            </div>
-
-
-            <!-- COMPETENCES -->
-
-            <div class="col-12">
-
-              <label class="info-label">
-                Compétences
-              </label>
-
-              <textarea
-                class="profile-textarea"
-                name="competences"
-                id="competences1"
-                placeholder="Décrivez vos compétences ou votre expérience...">{{ utilisateur.competence }}</textarea>
-
-            </div>
-
-
-          </div>
-
-        </div>
-
-
-        <!-- =========================
-             FOOTER
-        ========================== -->
-
-        <div class="modal-footer custom-modal-footer">
-
-          <button
-            type="button"
-            class="btn btn-outline-secondary"
-            data-bs-dismiss="modal">
-
-            Annuler
-
-          </button>
-
-
-          <button
-            type="button"
-            id="saveProfileBtn"
-            class="btn btn-primary custom-submit-btn">
-
-            Enregistrer
-
-          </button>
-
-        </div>
-
-
-      </div>
-
-    </div>
-
-  </div>
 
 
 </main>

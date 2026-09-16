@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import UtiliForm
 from .models import utili
+from datetime import datetime
 
 
 def acceuiltotal(request):
@@ -171,13 +172,9 @@ def connexion(request):
     return render(request, 'appretrut/connexion.html')
 
 
-# =========================
-# INSCRIPTION
-# =========================
-
 def inscription(request):
-
     if request.method == "POST":
+        print("FICHIERS RECUS :", request.FILES)
 
         form = UtiliForm(
             request.POST,
@@ -185,37 +182,85 @@ def inscription(request):
         )
 
         if form.is_valid():
-
-            print("FORMULAIRE VALIDE")
-
             utilisateur = form.save()
 
-            print(
-                "UTILISATEUR ENREGISTRE :",
-                utilisateur
-            )
+            print("PHOTO ENREGISTREE :", utilisateur.photo)
+            print("URL PHOTO :", utilisateur.photo.url if utilisateur.photo else "AUCUNE PHOTO")
 
-            # Enregistrer son ID dans la session
             request.session['utilisateur_id'] = utilisateur.id
-
-            # Aller vers son profil
             return redirect("tabbord")
 
         else:
-
-            print(
-                "ERREURS DU FORMULAIRE :",
-                form.errors
-            )
+            print("ERREURS :", form.errors)
 
     else:
-
         form = UtiliForm()
 
     return render(
         request,
         'appretrut/inscription/inscription.html',
-        {
-            'form': form
-        }
+        {'form': form}
     )
+def modifier_profil(request):
+
+    utilisateur_id = request.session.get('utilisateur_id')
+
+    if not utilisateur_id:
+        return redirect('connexion')
+
+    utilisateur = get_object_or_404(
+        utili,
+        id=utilisateur_id
+    )
+
+    if request.method == "POST":
+
+        # Récupération des données
+        nom = request.POST.get('nom')
+        prenom = request.POST.get('prenom')
+        date_naissance = request.POST.get('date_naissance')
+        sexe = request.POST.get('sexe')
+        email = request.POST.get('email')
+        telephone = request.POST.get('telephone')
+        ville = request.POST.get('ville')
+        nationalite = request.POST.get('nationalite')
+        domaine = request.POST.get('domaine')
+        metier = request.POST.get('metier')
+        experience = request.POST.get('experience')
+        niveau_etudes = request.POST.get('niveau_etudes')
+        competence = request.POST.get('competence')
+        motdepasse = request.POST.get('motdepasse')
+
+        # Modifier les champs
+        utilisateur.nom = nom
+        utilisateur.prenom = prenom
+
+        # IMPORTANT : ne pas mettre None dans date_naissance
+        if date_naissance:
+            utilisateur.date_naissance = datetime.strptime(
+                date_naissance,
+                '%Y-%m-%d'
+            ).date()
+        
+        utilisateur.motdepasse = motdepasse
+        utilisateur.sexe = sexe
+        utilisateur.email = email
+        utilisateur.telephone = telephone
+        utilisateur.ville = ville
+        utilisateur.nationalite = nationalite
+        utilisateur.domaine = domaine
+        utilisateur.metier = metier
+        utilisateur.experience = experience
+        utilisateur.niveau_etudes = niveau_etudes
+        utilisateur.competence = competence
+
+        # Nouvelle photo
+        if request.FILES.get('photo'):
+            utilisateur.photo = request.FILES.get('photo')
+
+        # Sauvegarde
+        utilisateur.save()
+
+        return redirect('tabbord')
+
+    return redirect('tabbord')  
