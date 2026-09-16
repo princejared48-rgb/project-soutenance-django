@@ -14,7 +14,7 @@ class utili(models.Model):
     niveau_etudes = models.CharField(max_length=100)
     nationalite = models.CharField(max_length=100)
     domaine = models.CharField(max_length=150)
-    motdepasse = models.CharField(max_length=100)
+    motdepasse = models.CharField(max_length=100,unique=True)
     photo = models.ImageField(upload_to='profils/', blank=True, null=True)
     competence = models.TextField(blank=True, null=True)
     

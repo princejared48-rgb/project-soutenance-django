@@ -3,14 +3,14 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('j/', views.acceuiltotal, name='acceuiltotal'),
+    path('', views.acceuiltotal, name='acceuiltotal'),
     path('utilisateur/', views.acceuil_utilisateur, name='acceuil_utilisateur'),
     path('contact/', views.contact, name='contact'),
     path('entreprise/', views.entreprise, name='entreprise'),
     path('offre/', views.offre, name='offre'),
     path('tabbord/', views.tabbord, name='tabbord'),        
     path('administrateur/', views.acceuil_administrateur, name='acceuil_administrateur'),
-    path('', views.tabbord_administrateur, name='tabbord_administrateur'),
+    path('tabbord_administrateur/', views.tabbord_administrateur, name='tabbord_administrateur'),
     path('entreprise_administrateur/', views.entreprise_administrateur, name='entreprise_administrateur'),
     path('offre_administrateur/', views.offre_administrateur, name='offre_administrateur'),
     path('candidature_administrateur/', views.candidature_administrateur, name='candidature_administrateur'),

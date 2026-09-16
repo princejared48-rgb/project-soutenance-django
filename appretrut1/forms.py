@@ -38,14 +38,12 @@ class UtiliForm(forms.ModelForm):
         }
 
     def clean(self):
-
         cleaned_data = super().clean()
 
         motdepasse = cleaned_data.get('motdepasse')
         confirmation = cleaned_data.get('confirmation')
 
         if motdepasse and confirmation:
-
             if motdepasse != confirmation:
                 raise forms.ValidationError(
                     "Les deux mots de passe ne correspondent pas."

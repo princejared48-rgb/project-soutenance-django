@@ -42,14 +42,18 @@
         <section class="welcome-area">
             <h1>Créer un compte</h1>
         </section>
+<section class="form-area">
 
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <strong>Erreur dans le formulaire :</strong>
+            {{ form.errors }}
+        </div>
+    {% endif %}
 
-        <section class="form-area">
-
-            
-            <form id="inscriptionForm"
-                  method="POST"
-                  enctype="multipart/form-data">
+    <form id="inscriptionForm"
+          method="POST"
+          enctype="multipart/form-data">
 
                 {% csrf_token %}
 

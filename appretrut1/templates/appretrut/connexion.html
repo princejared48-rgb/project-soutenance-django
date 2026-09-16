@@ -41,8 +41,6 @@
                     appretruct
                 </a>
 
-                
-
             </div>
 
         </nav>
@@ -71,7 +69,9 @@
 
             <h2>Connexion</h2>
 
-            <form id="connexionForm">
+            <form id="connexionForm" method="POST">
+
+                {% csrf_token %}
 
                 <label for="email">
                     Adresse e-mail
@@ -79,7 +79,13 @@
 
                 <div class="input-box">
 
-                    <input id="email" type="email" placeholder="exemple@email.com" required />
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="exemple@email.com"
+                        required
+                    />
 
                 </div>
 
@@ -90,7 +96,13 @@
 
                 <div class="input-box password-box">
 
-                    <input id="password" type="password" placeholder="••••••••" required />
+                    <input
+                        id="password"
+                        name="motdepasse"
+                        type="password"
+                        placeholder="••••••••"
+                        required
+                    />
 
                 </div>
 
@@ -104,10 +116,15 @@
                 </div>
 
 
-            
+                {% if erreur %}
+                    <div class="alert alert-danger">
+                        {{ erreur }}
+                    </div>
+                {% endif %}
+
 
                 <button
-                    class="btn-submit"   
+                    class="btn-submit"
                     type="submit">
 
                     SE CONNECTER
@@ -157,7 +174,6 @@
     </footer>
 
 </div>
-
 
 
 <script src="{% static 'appretrut/js/jsconnect.js' %}"></script>

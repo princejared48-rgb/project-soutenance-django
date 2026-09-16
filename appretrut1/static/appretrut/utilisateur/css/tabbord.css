@@ -7,27 +7,32 @@ html, body {
 }
 
 
-.lo{
+.lo {
     text-decoration: none;
 }
-.colr:hover{
+
+.colr:hover {
     color: white;
     transition: all 0.3s ease;
-    
 }
 
 
-
-.lien{
+.lien {
     text-transform: capitalize;
 }
-.lien1{
+
+.lien1 {
     text-transform: capitalize;
-  
 }
+
+
+/* =========================
+   HEADER
+========================= */
+
 header,
 header.sticky-top,
-header.fixed-top{
+header.fixed-top {
     position: sticky !important;
     top: 0 !important;
     left: 0 !important;
@@ -35,30 +40,50 @@ header.fixed-top{
     margin: 0 !important;
     width: 100% !important;
     z-index: 1030 !important;
-    background: linear-gradient(135deg, #438fbd 0%, #315d86 55%, #243852 100%) !important;
+    background: linear-gradient(
+        135deg,
+        #438fbd 0%,
+        #315d86 55%,
+        #243852 100%
+    ) !important;
     border-bottom: 3px solid #ff6b35 !important;
     box-shadow: 0 10px 28px rgba(8, 29, 60, 0.22);
 }
 
-main{
-    position: relative;
-    z-index: 1;
+
+/* =========================
+   MAIN
+========================= */
+
+/* MODIFICATION :
+   suppression de position: relative
+   et de z-index: 1
+*/
+main {
     width: 100%;
 }
-.head{
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+
+
+.head {
+    background: linear-gradient(
+        135deg,
+        #1e3c72 0%,
+        #2a5298 100%
+    );
     height: 10vh;
-
- width: 100%;
- display: flex;
- align-items:center;
- justify-content: space-around;
-
-
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
-.connect{
- 
-    border:2px solid #00d4ff;
+
+
+/* =========================
+   BOUTONS CONNEXION
+========================= */
+
+.connect {
+    border: 2px solid #00d4ff;
     margin: 1%;
     padding: 1%;
     border-radius: 8px;
@@ -73,7 +98,8 @@ main{
     color: white;
     transition: all 0.3s ease;
 }
-.connect1{
+
+.connect1 {
     color: white;
     border: 2px solid #ff6b6b;
     margin: 1%;
@@ -89,266 +115,431 @@ main{
     font-weight: bold;
     transition: all 0.3s ease;
 }
+
+
 @keyframes a1 {
-    to{
+    to {
         transform: scale(1.0);
     }
-    from{
-         transform: scale(1.05);
+
+    from {
+        transform: scale(1.05);
     }
 }
-.connect:hover{
+
+
+.connect:hover {
     background-color: #00d4ff;
     color: #1e3c72;
     box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
 }
-.connect1:hover{
+
+.connect1:hover {
     background-color: #ff5252;
     box-shadow: 0 4px 15px rgba(255, 82, 82, 0.4);
 }
 
 
+/* =========================
+   NAVIGATION
+========================= */
 
-
-
-.app{
+.app {
     text-transform: uppercase;
     color: white;
     font-weight: 600;
     letter-spacing: 1px;
 }
-.li{
-   color: white;
-   border-radius: 5px;
-   font-size: 10px;
-   font-weight: bold;
-   background-color: #00d4ff;
-   text-transform: uppercase;
-   padding: 5px 10px;
-   transition: all 0.3s ease;
+
+.li {
+    color: white;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    background-color: #00d4ff;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
 }
-.li1{
-  font-size: 10px;
-   font-weight: bold;
-   border-bottom: 2px solid #00d4ff;
-   color: rgb(255, 255, 255);
-   text-transform: uppercase;
-   transition: all 0.3s ease;
+
+.li1 {
+    font-size: 10px;
+    font-weight: bold;
+    border-bottom: 2px solid #00d4ff;
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    transition: all 0.3s ease;
 }
-.li12{
-   color: white;
-   border-radius: 5px;
-   font-size: 10px;
-   font-weight: bold;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column;
-   background-color: #00d4ff;
-   text-transform: uppercase;
-   padding: 5px 10px;
-   transition: all 0.3s ease;
+
+.li12 {
+    color: white;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #00d4ff;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
 }
-.li12:hover{
-     background-color: transparent;
-   border-radius: 2px;
-   color: white;
-   font-weight: bold;
-   font-size: 10px;
-   text-transform: uppercase;
-   border-top: 2px solid #ff6b6b;
-   border-bottom: 2px solid #ff6b6b;
-   border-right: none;
-   border-left: none;
-   transition: all 0.3s ease;
+
+.li12:hover {
+    background-color: transparent;
+    border-radius: 2px;
+    color: white;
+    font-weight: bold;
+    font-size: 10px;
+    text-transform: uppercase;
+    border-top: 2px solid #ff6b6b;
+    border-bottom: 2px solid #ff6b6b;
+    border-right: none;
+    border-left: none;
+    transition: all 0.3s ease;
 }
+
+
 @keyframes an1 {
-    to{
+    to {
         transform: scale(1.0);
     }
-    from{
-         transform: scale(1.1);
+
+    from {
+        transform: scale(1.1);
     }
 }
-.li1:hover{
-  font-size: 10px;
-   border-radius: 2px;
-   text-transform: uppercase;
-   border-bottom: 2px solid #ff6b6b;
-   border-top: 2px solid #ff6b6b;
-   border-right: none;
-   border-left: none;
-   color: #ff6b6b;
-   transition: all 0.3s ease;
+
+
+.li1:hover {
+    font-size: 10px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #ff6b6b;
+    border-top: 2px solid #ff6b6b;
+    border-right: none;
+    border-left: none;
+    color: #ff6b6b;
+    transition: all 0.3s ease;
 }
 
-.li:hover{
+
+.li:hover {
     background-color: transparent;
-   border-radius: 2px;
-   color: white;
-   font-weight: bold;
-   font-size: 10px;
-   text-transform: uppercase;
-   border-top: 2px solid #ff6b6b;
-   border-bottom: 2px solid #ff6b6b;
-   border-right: none;
-   border-left: none;
-   transition: all 0.3s ease;
+    border-radius: 2px;
+    color: white;
+    font-weight: bold;
+    font-size: 10px;
+    text-transform: uppercase;
+    border-top: 2px solid #ff6b6b;
+    border-bottom: 2px solid #ff6b6b;
+    border-right: none;
+    border-left: none;
+    transition: all 0.3s ease;
 }
 
-/* Unified site header */
-header, header .navbar, header .head, header .app, header .nav-link, header .connect, header .connect1, header .connect a { font-family: 'Times New Roman', Times, serif !important; }
-header { position: sticky; top: 0; z-index: 1030; background: linear-gradient(135deg, #438fbd 0%, #315d86 55%, #243852 100%) !important; border-bottom: 3px solid #ff6b35; box-shadow: 0 10px 28px rgba(8, 29, 60, 0.22); }
-.head { min-height: 78px; height: auto; padding: 0.75rem 1rem; background: transparent; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-.bj { display: flex; flex-direction: row; align-items: center; justify-content: flex-end; gap: 0.5rem; flex-wrap: nowrap; white-space: nowrap; }
-.bj > .connect, .bj > .connect1 { flex: 0 0 auto; width: auto; }
-.bj > .connect a, .bj > .connect1 a { display: inline-flex; align-items: center; justify-content: center; color: inherit; text-decoration: none; line-height: 1; }
-.bj > .connect div, .bj > .connect1 div { color: inherit !important; }
-.bj > .connect:focus-within, .bj > .connect1:focus-within { outline: 3px solid rgba(255, 190, 70, 0.75); outline-offset: 3px; }
-.bj > .connect { min-width: 118px; color: #dff4ff; background: linear-gradient(135deg, rgba(255,255,255,0.13), rgba(39,170,235,0.18)); border-color: rgba(137,220,255,0.7); box-shadow: 0 8px 18px rgba(5, 34, 72, 0.18); }
-.bj > .connect1 { min-width: 124px; color: #fff; background: linear-gradient(135deg, #ff8a3d 0%, #ef3f55 100%); border-color: rgba(255,255,255,0.45); box-shadow: 0 9px 20px rgba(239,63,85,0.3); }
-.bj > .connect:hover, .bj > .connect1:hover { filter: saturate(1.12) brightness(1.06); box-shadow: 0 12px 24px rgba(8, 29, 60, 0.28); }
-.app { color: #fff; font-weight: 800; letter-spacing: 0.12em; font-size: 1.15rem; }
-.connect, .connect1 { border-radius: 12px; padding: 0.75rem 1.15rem; margin: 0.2rem; font-weight: 700; transition: transform 0.25s ease, box-shadow 0.25s ease; }
-.connect { color: #fff; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.42); }
-.connect1 { color: #fff; background: linear-gradient(135deg, #ff8a3d, #ef3f55); border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 18px rgba(239,63,85,0.24); }
-.connect:hover, .connect1:hover { color: #fff; transform: translateY(-2px); }
-.li, .li1, .li12 { color: #fff; border-radius: 999px; padding: 0.65rem 1rem; text-decoration: none; transition: transform 0.25s ease, background 0.25s ease; }
-.li { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); }
-.li1 { background: transparent; border-bottom: 2px solid transparent; }
-.li12 { background: linear-gradient(135deg, rgba(30,176,255,0.3), rgba(255,107,53,0.28)); border: 1px solid rgba(255,255,255,0.25); }
-.li:hover, .li1:hover, .li12:hover { color: #fff; background: rgba(255,255,255,0.18); border-color: #ff8a3d; transform: translateY(-2px); }
 
-.long{
- width: 100%;
+/* =========================
+   HEADER UNIFIÉ
+========================= */
+
+header,
+header .navbar,
+header .head,
+header .app,
+header .nav-link,
+header .connect,
+header .connect1,
+header .connect a {
+    font-family: 'Times New Roman', Times, serif !important;
 }
-.hum{
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    background: linear-gradient(
+        135deg,
+        #438fbd 0%,
+        #315d86 55%,
+        #243852 100%
+    ) !important;
+    border-bottom: 3px solid #ff6b35;
+    box-shadow: 0 10px 28px rgba(8, 29, 60, 0.22);
+}
+
+.head {
+    min-height: 78px;
+    height: auto;
+    padding: 0.75rem 1rem;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.bj {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.bj > .connect,
+.bj > .connect1 {
+    flex: 0 0 auto;
+    width: auto;
+}
+
+.bj > .connect a,
+.bj > .connect1 a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.bj > .connect div,
+.bj > .connect1 div {
+    color: inherit !important;
+}
+
+.bj > .connect:focus-within,
+.bj > .connect1:focus-within {
+    outline: 3px solid rgba(255, 190, 70, 0.75);
+    outline-offset: 3px;
+}
+
+.bj > .connect {
+    min-width: 118px;
+    color: #dff4ff;
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.13),
+        rgba(39,170,235,0.18)
+    );
+    border-color: rgba(137,220,255,0.7);
+    box-shadow: 0 8px 18px rgba(5, 34, 72, 0.18);
+}
+
+.bj > .connect1 {
+    min-width: 124px;
+    color: #fff;
+    background: linear-gradient(
+        135deg,
+        #ff8a3d 0%,
+        #ef3f55 100%
+    );
+    border-color: rgba(255,255,255,0.45);
+    box-shadow: 0 9px 20px rgba(239,63,85,0.3);
+}
+
+.bj > .connect:hover,
+.bj > .connect1:hover {
+    filter: saturate(1.12) brightness(1.06);
+    box-shadow: 0 12px 24px rgba(8, 29, 60, 0.28);
+}
+
+.app {
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    font-size: 1.15rem;
+}
+
+.connect,
+.connect1 {
+    border-radius: 12px;
+    padding: 0.75rem 1.15rem;
+    margin: 0.2rem;
+    font-weight: 700;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.connect {
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.42);
+}
+
+.connect1 {
+    color: #fff;
+    background: linear-gradient(
+        135deg,
+        #ff8a3d,
+        #ef3f55
+    );
+    border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 0 8px 18px rgba(239,63,85,0.24);
+}
+
+.connect:hover,
+.connect1:hover {
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.li,
+.li1,
+.li12 {
+    color: #fff;
+    border-radius: 999px;
+    padding: 0.65rem 1rem;
+    text-decoration: none;
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.li {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.li1 {
+    background: transparent;
+    border-bottom: 2px solid transparent;
+}
+
+.li12 {
+    background: linear-gradient(
+        135deg,
+        rgba(30,176,255,0.3),
+        rgba(255,107,53,0.28)
+    );
+    border: 1px solid rgba(255,255,255,0.25);
+}
+
+.li:hover,
+.li1:hover,
+.li12:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.18);
+    border-color: #ff8a3d;
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   AUTRES ÉLÉMENTS
+========================= */
+
+.long {
+    width: 100%;
+}
+
+.hum {
     width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.dev{
+
+.dev {
     width: 95%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.but{
+
+.but {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-ul{
+
+ul {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
-li{
-   
+li {
     margin-right: 1%;
 }
 
 
-
-
-
-
-
-
-
-.photo{
+.photo {
     margin-bottom: 20px;
 }
 
 
+/* =========================
+   FOOTER
+========================= */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- footer{
-        background-color: rgb(1, 1, 50);
-        color: white;
-        height: 30vh;
- }
- .foot a{
+footer {
+    background-color: rgb(1, 1, 50);
     color: white;
- }
- 
-.foot{
+    height: 30vh;
+}
+
+.foot a {
+    color: white;
+}
+
+.foot {
     font-size: 25px;
     background-color: rgb(1, 1, 50);
 }
-.f p{
-      font-size: 15px;
-   text-decoration: none;
-   color: black; 
+
+.f p {
+    font-size: 15px;
+    text-decoration: none;
+    color: black;
 }
+
 .f1 p {
-   font-size: 15px;
-   text-decoration: none;
-   color: black; 
+    font-size: 15px;
+    text-decoration: none;
+    color: black;
 }
-.f1 p a{
+
+.f1 p a {
     text-decoration: none;
 }
-.f2 p{
 
-   font-size: 15px;
-   text-decoration: none;
-   color: black; 
+.f2 p {
+    font-size: 15px;
+    text-decoration: none;
+    color: black;
 }
-.f2 p a{
+
+.f2 p a {
     text-decoration: none;
 }
-.f3 p{
 
-   font-size: 15px;
-   text-decoration: none;
-  
-}
-.f3 p a{
+.f3 p {
+    font-size: 15px;
     text-decoration: none;
-
 }
-.h1{
+
+.f3 p a {
+    text-decoration: none;
+}
+
+.h1 {
     font-size: 15px;
     font-family: 'Times New Roman', Times, serif;
 }
-.lien10 a{
+
+.lien10 a {
     height: 5vh;
     width: 20%;
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
-/* Profil: presentation plus claire et plus compacte */
+
+/* =========================
+   PROFIL
+========================= */
+
 .profile-page {
     padding: 2.5rem 0 4rem;
     background: transparent;
@@ -365,7 +556,12 @@ li{
     padding: 2.25rem 2.5rem;
     border-radius: 24px;
     color: #ffffff;
-    background: linear-gradient(115deg, #102f5b 0%, #176b9f 58%, #13a6b8 100%);
+    background: linear-gradient(
+        115deg,
+        #102f5b 0%,
+        #176b9f 58%,
+        #13a6b8 100%
+    );
     box-shadow: 0 20px 45px rgba(16, 47, 91, 0.2);
 }
 
@@ -415,9 +611,14 @@ li{
 }
 
 .profile-sidebar {
-    min-height: 100%;
+    min-height: 300px !important;
     padding: 2rem !important;
-    background: linear-gradient(160deg, #102f5b 0%, #176b9f 65%, #13a6b8 100%);
+    background: linear-gradient(
+        160deg,
+        #102f5b 0%,
+        #176b9f 65%,
+        #13a6b8 100%
+    );
 }
 
 #photoProfil {
@@ -469,7 +670,13 @@ li{
     box-shadow: 0 0 0 0.2rem rgba(19, 166, 184, 0.16);
 }
 
+
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media (max-width: 767.98px) {
+
     .profile-page {
         padding-top: 1.25rem;
     }
@@ -483,6 +690,11 @@ li{
         padding: 1.5rem !important;
     }
 }
+
+
+/* =========================
+   PROFILE CARD
+========================= */
 
 .profile-page {
     background: transparent;
@@ -501,7 +713,11 @@ li{
 }
 
 .profile-sidebar {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background: linear-gradient(
+        135deg,
+        #1e3c72 0%,
+        #2a5298 100%
+    );
     color: #ffffff;
 }
 
@@ -551,14 +767,50 @@ li{
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
 }
 
+
+/* =========================
+   BOUTON OUVRIR MODAL
+========================= */
+
 .modal-open-btn {
-    background: linear-gradient(135deg, #00d4ff 0%, #1e3c72 100%);
+    background: linear-gradient(
+        135deg,
+        #00d4ff 0%,
+        #1e3c72 100%
+    );
     border: none;
     border-radius: 999px;
     padding: 0.7rem 1.2rem;
     font-weight: 600;
     box-shadow: 0 8px 20px rgba(0, 212, 255, 0.2);
 }
+
+
+/* ==================================================
+   MODAL
+   ================================================== */
+
+/*
+   MODIFICATION IMPORTANTE
+
+   Le modal doit être au-dessus du reste de la page.
+*/
+
+.modal {
+    z-index: 1055 !important;
+}
+
+
+/*
+   Le fond noir/translucide derrière le modal.
+*/
+
+.modal-backdrop {
+    z-index: 1050 !important;
+}
+
+
+/* Contenu du modal */
 
 .custom-modal .modal-content {
     border: none;
@@ -567,8 +819,15 @@ li{
     box-shadow: 0 20px 45px rgba(30, 60, 114, 0.16);
 }
 
+
+/* En-tête */
+
 .custom-modal-header {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background: linear-gradient(
+        135deg,
+        #1e3c72 0%,
+        #2a5298 100%
+    );
     color: #ffffff;
     padding: 1.2rem 1.4rem;
 }
@@ -584,14 +843,23 @@ li{
     opacity: 0.9;
 }
 
+
+/* Bouton fermer */
+
 .btn-close-white {
     filter: brightness(0) invert(1);
 }
+
+
+/* Corps */
 
 .custom-modal-body {
     background: #f8fbff;
     padding: 1.2rem 1.4rem;
 }
+
+
+/* Pied du modal */
 
 .custom-modal-footer {
     background: #f8fbff;
@@ -599,8 +867,15 @@ li{
     padding: 1rem 1.4rem 1.2rem;
 }
 
+
+/* Bouton envoyer */
+
 .custom-submit-btn {
-    background: linear-gradient(135deg, #00d4ff 0%, #1e3c72 100%);
+    background: linear-gradient(
+        135deg,
+        #00d4ff 0%,
+        #1e3c72 100%
+    );
     border: none;
     border-radius: 12px;
     padding: 0.7rem 1rem;
@@ -610,6 +885,11 @@ li{
 .custom-submit-btn:hover {
     transform: translateY(-1px);
 }
+
+
+/* =========================
+   INFORMATIONS PROFIL
+========================= */
 
 .profile-name {
     font-weight: 700;
@@ -636,6 +916,11 @@ li{
     border: 1px solid #dde8f6;
 }
 
+
+/* =========================
+   STATUS
+========================= */
+
 .status {
     padding: 0.45rem 0.85rem;
     border-radius: 999px;
@@ -658,6 +943,11 @@ li{
     color: #0f5132;
     background-color: #d1e7dd;
 }
+
+
+/* =========================
+   SETTINGS
+========================= */
 
 .settings-actions .btn {
     text-align: left;
@@ -686,6 +976,11 @@ li{
     color: #ffffff;
 }
 
+
+/* =========================
+   DERNIÈRES RÈGLES PROFILE
+========================= */
+
 .profile-page {
     background-color: #f3f7fb;
     padding-bottom: 60px;
@@ -710,18 +1005,6 @@ li{
 
 .info-label {
     color: #6c757d;
-
-
-
-
-
-
-
-
-
-
-
-
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -797,4 +1080,3 @@ li{
     background-color: #ff5f6d;
     color: #ffffff;
 }
-
