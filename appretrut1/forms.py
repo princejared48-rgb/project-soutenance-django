@@ -5,7 +5,9 @@ from .models import utili
 class UtiliForm(forms.ModelForm):
 
     confirmation = forms.CharField(
-        widget=forms.PasswordInput,
+        widget=forms.PasswordInput(
+            attrs={'placeholder': 'Confirmer le mot de passe'}
+        ),
         required=True
     )
 
@@ -18,20 +20,14 @@ class UtiliForm(forms.ModelForm):
             'date_naissance',
             'email',
             'telephone',
-            'ville',
-            'sexe',
-            'metier',
-            'experience',
-            'niveau_etudes',
-            'nationalite',
-            'domaine',
             'motdepasse',
-            'photo',
-            'competence',
         ]
 
         widgets = {
-            'motdepasse': forms.PasswordInput(),
+            'motdepasse': forms.PasswordInput(
+                attrs={'placeholder': 'Mot de passe'}
+            ),
+
             'date_naissance': forms.DateInput(
                 attrs={'type': 'date'}
             ),
@@ -50,3 +46,4 @@ class UtiliForm(forms.ModelForm):
                 )
 
         return cleaned_data
+

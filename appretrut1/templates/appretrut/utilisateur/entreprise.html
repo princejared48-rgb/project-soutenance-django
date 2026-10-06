@@ -22,99 +22,136 @@
 
 <main>
 
+<input type="text" class="button1" placeholder="  quel posfte voulez vous candidater ?....">   
+<button class="btny">
+<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="black"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
+</button>
 
-<section class="pricing-intro" aria-labelledby="pricing-title">
 
-  <h1 id="pricing-title">Choisissez votre abonnement</h1>
-  <p>Développez votre recrutement avec une formule adaptée aux besoins de votre entreprise.</p>
+<section>
+   <section class="part utilisateur">
+
+        <table class="table table-bordered">
+
+            <thead>
+
+                <tr>
+
+                    <th>Photo</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+            {% for utilisateur in utilisateurs %}
+
+                <tr>
+
+                    <!-- PHOTO -->
+
+                    <td>
+
+                        {% if utilisateur.photo %}
+
+                            <img
+                                src="{{ utilisateur.photo.url }}"
+                                alt="Photo de {{ utilisateur.prenom }}"
+                                width="70"
+                                height="70"
+                                style="
+                                    object-fit: cover;
+                                    border-radius: 50%;
+                                "
+                            >
+
+                        {% else %}
+
+                            <span>Aucune photo</span>
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <!-- NOM -->
+
+                    <td>
+                        {{ utilisateur.nom }}
+                    </td>
+
+
+                    <!-- PRÉNOM -->
+
+                    <td>
+                        {{ utilisateur.prenom }}
+                    </td>
+
+
+                    <!-- EMAIL -->
+
+                    <td>
+                        {{ utilisateur.email }}
+                    </td>
+
+
+                    <!-- ACTIONS -->
+
+                    <td>
+
+                        <!-- BOUTON INFOS -->
+
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modalUtilisateur{{ utilisateur.id }}"
+                        >
+
+                            + Infos
+
+                        </button>
+
+
+                       
+
+                
+                    </td>
+
+                </tr>
+
+
+            {% empty %}
+
+                <tr>
+
+                    <td
+                        colspan="5"
+                        class="text-center"
+                    >
+
+                        Aucune offre poster.
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+
 </section>
-
-<section class="pricing-grid" aria-label="Formules d'abonnement">
-  <article class="pricing-card">
-    <div class="card-heading">
-      <div>
-        <span class="plan-label">Essentiel</span>
-        <h2>Classic</h2>
-      </div>
-      
-    </div>
-    <p class="plan-description">Pour les entreprises qui recrutent régulièrement.</p>
-    <div class="price"><strong>10 000</strong> <span>FCFA / mois</span></div>
-    <div class="offer-count"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> 5 offres d'emploi</div>
-    <ul class="feature-list">
-      <li>5 offres actives</li>
-      <li>Offres visibles pendant 30 jours</li>
-      <li>Profil entreprise</li>
-      <li>Logo de l'entreprise</li>
-      <li>Gestion des candidatures</li>
-      <li>Notifications des candidatures</li>
-      <li>Statistiques de base</li>
-      <li>Support standard</li>
-    </ul>
-    <a class="plan-button plan-button-light" href="#">Choisir Classic <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
-  </article>
-
-  <article class="pricing-card pricing-card-premium">
-    <span class="popular-badge">Le plus choisi</span>
-    <div class="card-heading">
-      <div>
-        <span class="plan-label">Performance</span>
-        <h2>Premium</h2>
-      </div>
-      
-    </div>
-    <p class="plan-description">Pour les entreprises qui recrutent activement.</p>
-    <div class="price"><strong>30 000</strong> <span>FCFA / mois</span></div>
-    <div class="offer-count"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> 15 offres d'emploi</div>
-    <ul class="feature-list">
-      <li>15 offres actives</li>
-      <li>Offres visibles pendant 60 jours</li>
-      <li>Profil entreprise complet</li>
-      <li>Gestion des candidatures</li>
-      <li>Statistiques avancées</li>
-      <li>Filtrage des candidats</li>
-      <li>Export des candidatures</li>
-      <li>Mise en avant des offres</li>
-      <li>Position prioritaire dans les résultats</li>
-      <li>Badge Entreprise Premium</li>
-      <li>Support prioritaire</li>
-    </ul>
-    <a class="plan-button plan-button-dark" href="#">Passer au Premium <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
-  </article>
-</section>
-
-
-
-
-
-
-
-<section class="premium-benefits" aria-labelledby="benefits-title">
-  <div class="benefits-heading">
-    <span class="benefits-kicker">La différence Premium</span>
-    <h2 id="benefits-title">Plus qu'un abonnement, un vrai avantage recrutement.</h2>
-  </div>
-  <div class="benefits-grid">
-    <div class="benefit-item">
-      <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
-      <div><h3>Plus d'offres</h3><p>Publiez jusqu'à 15 offres simultanément.</p></div>
-    </div>
-    <div class="benefit-item">
-      <i class="fa-solid fa-eye" aria-hidden="true"></i>
-      <div><h3>Plus de visibilité</h3><p>Vos annonces apparaissent en priorité dans les résultats.</p></div>
-    </div>
-    <div class="benefit-item">
-      <i class="fa-solid fa-user-check" aria-hidden="true"></i>
-      <div><h3>Meilleur recrutement</h3><p>Filtrez et gérez plus facilement vos candidats.</p></div>
-    </div>
-    <div class="benefit-item">
-      <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
-      <div><h3>Statistiques avancées</h3><p>Suivez les performances de vos offres d'emploi.</p></div>
-    </div>
-  </div>
-</section>
-
-
 
 
 

@@ -1,56 +1,224 @@
+
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .forms import UtiliForm
-from .models import utili
-from datetime import datetime
+from django.contrib import messages
 
+from django.contrib.auth.hashers import make_password, check_password
+
+from .forms import UtiliForm
+
+from .models import utili
+
+
+# ==========================================
+# ACCUEIL TOTAL
+# ==========================================
 
 def acceuiltotal(request):
-    return render(request, 'appretrut/acceuiltotal.html')
-
-
-def acceuil_utilisateur(request):
     return render(
         request,
-        'appretrut/utilisateur/acceuil_utilisateur.html'
+        'appretrut/acceuiltotal.html'
     )
 
 
+# ==========================================
+# INSCRIPTION
+# ==========================================
+
+def inscription(request):
+
+    if request.method == 'POST':
+
+        form = UtiliForm(request.POST)
+
+        if form.is_valid():
+
+            utilisateur = form.save(commit=False)
+
+            # Sécuriser le mot de passe
+            utilisateur.motdepasse = make_password(
+                utilisateur.motdepasse
+            )
+
+            utilisateur.save()
+
+            # Garder l'utilisateur connecté
+            request.session['utilisateur_id'] = utilisateur.id
+
+            messages.success(
+                request,
+                "Votre compte a été créé avec succès."
+            )
+
+            return redirect('acceuil_utilisateur')
+
+    else:
+
+        form = UtiliForm()
+
+    return render(
+        request,
+        'appretrut/inscription/inscription.html',
+        {'form': form}
+    )
+
+
+# ==========================================
+# CONNEXION
+# ==========================================
+
+def connexion(request):
+
+    if request.method == 'POST':
+
+        email = request.POST.get('email', '').strip()
+
+        motdepasse = request.POST.get('motdepasse', '')
+
+        try:
+
+            utilisateur = utili.objects.get(
+                email__iexact=email
+            )
+
+            # Vérifier le mot de passe
+            if check_password(
+                motdepasse,
+                utilisateur.motdepasse
+            ):
+
+                # Nouvelle session
+                request.session.cycle_key()
+
+                # Enregistrer l'utilisateur connecté
+                request.session['utilisateur_id'] = utilisateur.id
+
+                messages.success(
+                    request,
+                    "Connexion réussie."
+                )
+
+                return redirect('acceuil_utilisateur')
+
+            else:
+
+                return render(
+                    request,
+                    'appretrut/connexion.html',
+                    {
+                        'erreur':
+                        'Adresse e-mail ou mot de passe incorrect.'
+                    }
+                )
+
+        except utili.DoesNotExist:
+
+            return render(
+                request,
+                'appretrut/connexion.html',
+                {
+                    'erreur':
+                    'Adresse e-mail ou mot de passe incorrect.'
+                }
+            )
+
+    return render(
+        request,
+        'appretrut/connexion.html'
+    )
+
+
+# ==========================================
+# DECONNEXION
+# ==========================================
+
+def deconnexion(request):
+
+    request.session.flush()
+
+    return redirect('connexion')
+
+
+# ==========================================
+# ACCUEIL UTILISATEUR
+# ==========================================
+
+def acceuil_utilisateur(request):
+
+    if 'utilisateur_id' not in request.session:
+        return redirect('connexion')
+
+    utilisateur = get_object_or_404(
+        utili,
+        id=request.session['utilisateur_id']
+    )
+
+    return render(
+        request,
+        'appretrut/utilisateur/acceuil_utilisateur.html',
+        {
+            'utilisateur': utilisateur
+        }
+    )
+
+
+# ==========================================
+# CONTACT
+# ==========================================
+
 def contact(request):
+
+    if 'utilisateur_id' not in request.session:
+        return redirect('connexion')
+
     return render(
         request,
         'appretrut/utilisateur/contact.html'
     )
 
 
+# ==========================================
+# ENTREPRISE
+# ==========================================
+
 def entreprise(request):
+
+    if 'utilisateur_id' not in request.session:
+        return redirect('connexion')
+
     return render(
         request,
         'appretrut/utilisateur/entreprise.html'
     )
 
 
+# ==========================================
+# OFFRE
+# ==========================================
+
 def offre(request):
+
+    if 'utilisateur_id' not in request.session:
+        return redirect('connexion')
+
     return render(
         request,
         'appretrut/utilisateur/offre.html'
     )
 
 
-# =========================
-# PROFIL UTILISATEUR
-# =========================
+# ==========================================
+# TABLEAU DE BORD UTILISATEUR
+# ==========================================
 
 def tabbord(request):
 
-    utilisateur_id = request.session.get('utilisateur_id')
-
-    if not utilisateur_id:
+    if 'utilisateur_id' not in request.session:
         return redirect('connexion')
 
     utilisateur = get_object_or_404(
         utili,
-        id=utilisateur_id
+        id=request.session['utilisateur_id']
     )
 
     return render(
@@ -62,16 +230,174 @@ def tabbord(request):
     )
 
 
-# =========================
+
+
+
+
+
+
+
+
+# ==========================================
+# ACCUEIL entreprise
+# ==========================================
+
+def entreprise(request):
+
+    if 'utilisateur_id' not in request.session:
+        return redirect('connexion')
+
+    utilisateur = get_object_or_404(
+        utili,
+        id=request.session['utilisateur_id']
+    )
+
+    return render(
+        request,
+        'appretrut/entreprise/acceuil_entreprise.html',
+        {
+            'utilisateur': utilisateur
+        }
+    )
+
+
+# ==========================================
+# CONTACT entreprise
+# ==========================================
+
+def contact_entreprise(request):
+
+    if 'utilisateur_id' not in request.session:
+        return redirect('connexion')
+
+    return render(
+        request,
+        'appretrut/entreprise/contact_entreprise.html'
+    )
+
+
+# ==========================================
+# ENTREPRISE entreprise
+# ==========================================
+
+def entreprise_enprise(request):
+
+    if 'utilisateur_id' not in request.session:
+        return redirect('connexion')
+
+    return render(
+        request,
+        'appretrut/entreprise/entreprise_entreprise.html'
+    )
+
+
+# ==========================================
+# OFFRE entreprise
+# ==========================================
+
+def offre_entreprise(request):
+
+    if 'utilisateur_id' not in request.session:
+        return redirect('connexion')
+
+    return render(
+        request,
+        'appretrut/entreprise/offre_entreprise.html'
+    )
+
+
+# ==========================================
+# TABLEAU DE BORD entreprise
+# ==========================================
+
+def tabbord_entreprise(request):
+
+    if 'utilisateur_id' not in request.session:
+        return redirect('connexion')
+
+
+
+    return render(
+        request,
+        'appretrut/entreprise/tabbord_entreprise.html',
+        
+    )
+
+
+
+# ==========================================
+# MODIFIER PROFIL
+# ==========================================
+
+def modifier_profil(request):
+
+    if 'utilisateur_id' not in request.session:
+        return redirect('connexion')
+
+    utilisateur = get_object_or_404(
+        utili,
+        id=request.session['utilisateur_id']
+    )
+
+    if request.method == 'POST':
+
+        form = UtiliForm(
+            request.POST,
+            request.FILES,
+            instance=utilisateur
+        )
+
+        if form.is_valid():
+
+            form.save()
+
+            messages.success(
+                request,
+                "Votre profil a été modifié."
+            )
+
+            return redirect('tabbord')
+
+    else:
+
+        form = UtiliForm(
+            instance=utilisateur
+        )
+
+    return render(
+        request,
+        'appretrut/utilisateur/modifier_profil.html',
+        {
+            'form': form,
+            'utilisateur': utilisateur
+        }
+    )
+
+
+# ==========================================
 # ADMINISTRATEUR
-# =========================
+# ==========================================
 
 def acceuil_administrateur(request):
+
     return render(
         request,
         'appretrut/administrateur/acceuil_administrateur.html'
     )
 
+
+
+def aprpos(request):
+
+    return render(
+        request,
+        'aprpos.html'
+    )
+
+
+# ==========================================
+# TABLEAU DE BORD ADMINISTRATEUR
+# ==========================================
 
 def tabbord_administrateur(request):
 
@@ -86,17 +412,9 @@ def tabbord_administrateur(request):
     )
 
 
-def supprimer_utilisateur(request, id):
-
-    utilisateur = get_object_or_404(
-        utili,
-        id=id
-    )
-
-    utilisateur.delete()
-
-    return redirect('tabbord_administrateur')
-
+# ==========================================
+# INFORMATIONS UTILISATEUR
+# ==========================================
 
 def infos_utilisateur(request, id):
 
@@ -114,153 +432,68 @@ def infos_utilisateur(request, id):
     )
 
 
+# ==========================================
+# SUPPRIMER UTILISATEUR
+# ==========================================
+
+def supprimer_utilisateur(request, id):
+
+    utilisateur = get_object_or_404(
+        utili,
+        id=id
+    )
+
+    utilisateur.delete()
+
+    return redirect(
+        'tabbord_administrateur'
+    )
+
+
+# ==========================================
+# ENTREPRISE ADMINISTRATEUR
+# ==========================================
+
 def entreprise_administrateur(request):
+
     return render(
         request,
         'appretrut/administrateur/entreprise_administrateur.html'
     )
 
 
+# ==========================================
+# OFFRE ADMINISTRATEUR
+# ==========================================
+
 def offre_administrateur(request):
+
     return render(
         request,
         'appretrut/administrateur/offre_administrateur.html'
     )
 
 
+# ==========================================
+# CANDIDATURE ADMINISTRATEUR
+# ==========================================
+
 def candidature_administrateur(request):
+
     return render(
         request,
         'appretrut/administrateur/candidature_administrateur.html'
     )
 
 
+# ==========================================
+# CONTACT ADMINISTRATEUR
+# ==========================================
+
 def contact_administrateur(request):
+
     return render(
         request,
         'appretrut/administrateur/contact_administrateur.html'
     )
 
-
-# =========================
-# CONNEXION
-# =========================
-def connexion(request):
-    if request.method == "POST":
-        email = request.POST.get("email")
-        motdepasse = request.POST.get("motdepasse")
-
-        try:
-            utilisateur = utili.objects.get(
-                email=email,
-                motdepasse=motdepasse
-            )
-
-            request.session['utilisateur_id'] = utilisateur.id
-
-            return redirect("tabbord")
-
-        except utili.DoesNotExist:
-            return render(
-                request,
-                'appretrut/connexion.html',
-                {
-                    'erreur': 'Email ou mot de passe incorrect.'
-                }
-            )
-
-    return render(request, 'appretrut/connexion.html')
-
-
-def inscription(request):
-    if request.method == "POST":
-        print("FICHIERS RECUS :", request.FILES)
-
-        form = UtiliForm(
-            request.POST,
-            request.FILES
-        )
-
-        if form.is_valid():
-            utilisateur = form.save()
-
-            print("PHOTO ENREGISTREE :", utilisateur.photo)
-            print("URL PHOTO :", utilisateur.photo.url if utilisateur.photo else "AUCUNE PHOTO")
-
-            request.session['utilisateur_id'] = utilisateur.id
-            return redirect("tabbord")
-
-        else:
-            print("ERREURS :", form.errors)
-
-    else:
-        form = UtiliForm()
-
-    return render(
-        request,
-        'appretrut/inscription/inscription.html',
-        {'form': form}
-    )
-def modifier_profil(request):
-
-    utilisateur_id = request.session.get('utilisateur_id')
-
-    if not utilisateur_id:
-        return redirect('connexion')
-
-    utilisateur = get_object_or_404(
-        utili,
-        id=utilisateur_id
-    )
-
-    if request.method == "POST":
-
-        # Récupération des données
-        nom = request.POST.get('nom')
-        prenom = request.POST.get('prenom')
-        date_naissance = request.POST.get('date_naissance')
-        sexe = request.POST.get('sexe')
-        email = request.POST.get('email')
-        telephone = request.POST.get('telephone')
-        ville = request.POST.get('ville')
-        nationalite = request.POST.get('nationalite')
-        domaine = request.POST.get('domaine')
-        metier = request.POST.get('metier')
-        experience = request.POST.get('experience')
-        niveau_etudes = request.POST.get('niveau_etudes')
-        competence = request.POST.get('competence')
-        motdepasse = request.POST.get('motdepasse')
-
-        # Modifier les champs
-        utilisateur.nom = nom
-        utilisateur.prenom = prenom
-
-        # IMPORTANT : ne pas mettre None dans date_naissance
-        if date_naissance:
-            utilisateur.date_naissance = datetime.strptime(
-                date_naissance,
-                '%Y-%m-%d'
-            ).date()
-        
-        utilisateur.motdepasse = motdepasse
-        utilisateur.sexe = sexe
-        utilisateur.email = email
-        utilisateur.telephone = telephone
-        utilisateur.ville = ville
-        utilisateur.nationalite = nationalite
-        utilisateur.domaine = domaine
-        utilisateur.metier = metier
-        utilisateur.experience = experience
-        utilisateur.niveau_etudes = niveau_etudes
-        utilisateur.competence = competence
-
-        # Nouvelle photo
-        if request.FILES.get('photo'):
-            utilisateur.photo = request.FILES.get('photo')
-
-        # Sauvegarde
-        utilisateur.save()
-
-        return redirect('tabbord')
-
-    return redirect('tabbord')  

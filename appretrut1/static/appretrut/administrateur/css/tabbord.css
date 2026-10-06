@@ -887,3 +887,133 @@ footer {
     }
 
 }
+
+
+
+/* =========================================================
+   TABLEAU
+========================================================= */
+
+.part {
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(8, 29, 60, 0.12);
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.part .table {
+    margin-bottom: 0;
+    border-collapse: collapse;
+}
+
+.part .table thead {
+    background: linear-gradient(
+        135deg,
+        #438fbd 0%,
+        #315d86 55%,
+        #243852 100%
+    );
+}
+
+.part .table thead th {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: capitalize;
+    padding: 16px;
+    border: none;
+    letter-spacing: 0.5px;
+}
+
+.part .table tbody td {
+    padding: 14px 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #2c3e50;
+    border-bottom: 1px solid #f0f3f7;
+    vertical-align: middle;
+}
+
+.part .table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.part .table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.part .table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.part .table tbody img {
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #438fbd;
+}
+
+/* =========================================================
+   BOUTONS TABLEAU
+========================================================= */
+
+.part .btn {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: capitalize;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    border: none;
+}
+
+.part .btn-primary {
+    background: linear-gradient(
+        135deg,
+        #438fbd 0%,
+        #315d86 100%
+    );
+    color: white;
+}
+
+.part .btn-primary:hover {
+    background: linear-gradient(
+        135deg,
+        #315d86 0%,
+        #243852 100%
+    );
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(67, 143, 189, 0.35);
+}
+
+.part .btn-danger {
+    background: linear-gradient(
+        135deg,
+        #ff8a3d 0%,
+        #ef3f55 100%
+    );
+    color: white;
+}
+
+.part .btn-danger:hover {
+    background: linear-gradient(
+        135deg,
+        #ef3f55 0%,
+        #d83348 100%
+    );
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(239, 63, 85, 0.35);
+}
+
+.part td:last-child {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}

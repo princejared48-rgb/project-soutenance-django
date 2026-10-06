@@ -22,7 +22,7 @@
   <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light head">
       <div class="container-fluid long">
-        <a class="navbar-brand app text-white" href="{% url 'acceuiltotal' %}">appretruct</a>
+        <a class="navbar-brand app text-white" href="{% url 'acceuiltotal' %}">app-retruct</a>
         <div class="hum">
           <button class="navbar-toggler bth1 btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -30,17 +30,14 @@
           <div class="collapse navbar-collapse dev d-flex ju" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item d1"><a class="nav-link lien1 li" aria-current="page" href="{% url 'acceuiltotal' %}">&nbsp;accueil&nbsp;</a></li>
-                 <li class="nav-item">
-          <a class="nav-link lien li1 text-white" href="{% url 'acceuiltotal' %}">offre d'emploi</a>
-        </li>
-              <li class="nav-item"><a class="nav-link lien li1 text-white" href="{% url 'acceuiltotal' %}">&nbsp;entreprise&nbsp;</a></li>
+      
 
-              <li class="nav-item"><a class="nav-link lien li1 text-white" href="{% url 'acceuiltotal' %}">&nbsp;contact&nbsp;</a></li>
+              <li class="nav-item"><a class="nav-link lien li1 text-white" href="{% url 'aprpos' %}">&nbsp;a propos&nbsp;</a></li>
             </ul>
           </div>
           <div class="header-actions">
             <a class="nav-link lien li12 text-white" href="{% url 'connexion' %}">Connexion</a>
-            <a class="nav-link lien li13 text-white" href="{% url 'inscription' %}">Inscription</a>
+            <a class="nav-link lien li13 text-white inscr border border-orange rounded-pill" style=" background: linear-gradient(135deg, #091b36 0%, #123a72 35%, #1a5bb5 100%);" href="{% url 'inscription' %}">Inscription</a>
           </div>
         </div>
       </div>

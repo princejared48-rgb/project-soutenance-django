@@ -12,7 +12,7 @@
         crossorigin="anonymous">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        integrity="sha384-MrcW6ZMFY6jJZ0u6gWm4yQp3fJ5gXfQf7p7j2cZ6Zp7m5X6f7"
         crossorigin="anonymous"></script>
 
     <title>Connexion | Appretruct</title>
@@ -24,7 +24,9 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
 
-    <link rel="stylesheet" href="{% static 'appretrut/connection.css' %}" />
+    <link
+        rel="stylesheet"
+        href="{% static 'appretrut/connection.css' %}" />
 </head>
 
 <body>
@@ -117,9 +119,11 @@
 
 
                 {% if erreur %}
+
                     <div class="alert alert-danger">
                         {{ erreur }}
                     </div>
+
                 {% endif %}
 
 
