@@ -56,8 +56,8 @@ urlpatterns = [
 
     path(
         'entreprise/',
-        views.entreprise,
-        name='entreprise'
+        views.entreprise_utilisateur,
+        name='entreprise_utilisateur'
     ),
 
     path(
@@ -78,47 +78,48 @@ urlpatterns = [
         name='modifier_profil'
     ),
 
+
+
+# ==========================================
+# ESPACE ENTREPRISE
+# ==========================================
+
+path(
+    'entreprisee/',
+    views.acceuil_entreprise,
+    name='acceuil_entreprise'
+),
+
+path(
+    'entreprisee/contact/',
+    views.contact_entreprise,
+    name='contact_entreprise'
+),
+
+
+
+path(
+    'entreprisee/offres/',
+    views.offre_entreprise,
+    name='offre_entreprise'
+),
+
+path(
+    'entreprisee/tabbord/',
+    views.tabbord_entreprise,
+    name='tabbord_entreprise'
+),
     # ==========================================
-    # ESPACE entreprise
+    # A PROPOS
     # ==========================================
-    path(
-        'entreprise/',
-        views.entreprise,
-        name='entreprise'
-    ),
 
     path(
-        'contact_entreprise/',
-        views.contact_entreprise,
-        name='contact_entreprise'
-    ),
-
-    path(
-        'entreprise_enprise/',
-        views.entreprise_enprise,
-        name='entreprise_entreprise'
-    ),
-
-    path(
-        'offre_entreprise/',
-        views.offre_entreprise,
-        name='offre_entreprise'
-    ),
-
-    path(
-        'tabbord_entreprise/',
-        views.tabbord_entreprise,
-        name='tabbord_entreprise'
-    ),
-
-      # ==========================================
-    # A propos
-    # ==========================================
-      path(
         'aprpos/',
         views.aprpos,
         name='aprpos'
     ),
+
+
     # ==========================================
     # ADMINISTRATEUR
     # ==========================================
@@ -130,44 +131,45 @@ urlpatterns = [
     ),
 
     path(
-        'tabbord_administrateur/',
+        'administrateur/tabbord/',
         views.tabbord_administrateur,
         name='tabbord_administrateur'
     ),
 
     path(
-        'entreprise_administrateur/',
+        'administrateur/entreprises/',
         views.entreprise_administrateur,
         name='entreprise_administrateur'
     ),
 
     path(
-        'offre_administrateur/',
+        'administrateur/offres/',
         views.offre_administrateur,
         name='offre_administrateur'
     ),
 
     path(
-        'candidature_administrateur/',
+        'administrateur/candidatures/',
         views.candidature_administrateur,
         name='candidature_administrateur'
     ),
 
     path(
-        'contact_administrateur/',
+        'administrateur/contacts/',
         views.contact_administrateur,
         name='contact_administrateur'
     ),
 
     path(
-        'infos-utilisateur/<int:id>/',
+        'administrateur/utilisateur/<int:id>/',
         views.infos_utilisateur,
         name='infos_utilisateur'
     ),
 
     path(
-        'supprimer-utilisateur/<int:id>/',
+        'administrateur/utilisateur/<int:id>/supprimer/',
         views.supprimer_utilisateur,
         name='supprimer_utilisateur'
     ),
+
 ]

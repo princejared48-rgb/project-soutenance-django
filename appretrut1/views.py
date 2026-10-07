@@ -1,12 +1,8 @@
-
 from django.shortcuts import render, redirect, get_object_or_404
-
 from django.contrib import messages
-
 from django.contrib.auth.hashers import make_password, check_password
 
 from .forms import UtiliForm
-
 from .models import utili
 
 
@@ -59,7 +55,9 @@ def inscription(request):
     return render(
         request,
         'appretrut/inscription/inscription.html',
-        {'form': form}
+        {
+            'form': form
+        }
     )
 
 
@@ -71,9 +69,15 @@ def connexion(request):
 
     if request.method == 'POST':
 
-        email = request.POST.get('email', '').strip()
+        email = request.POST.get(
+            'email',
+            ''
+        ).strip()
 
-        motdepasse = request.POST.get('motdepasse', '')
+        motdepasse = request.POST.get(
+            'motdepasse',
+            ''
+        )
 
         try:
 
@@ -98,7 +102,9 @@ def connexion(request):
                     "Connexion réussie."
                 )
 
-                return redirect('acceuil_utilisateur')
+                return redirect(
+                    'acceuil_utilisateur'
+                )
 
             else:
 
@@ -136,7 +142,9 @@ def deconnexion(request):
 
     request.session.flush()
 
-    return redirect('connexion')
+    return redirect(
+        'connexion'
+    )
 
 
 # ==========================================
@@ -163,7 +171,7 @@ def acceuil_utilisateur(request):
 
 
 # ==========================================
-# CONTACT
+# CONTACT UTILISATEUR
 # ==========================================
 
 def contact(request):
@@ -178,22 +186,30 @@ def contact(request):
 
 
 # ==========================================
-# ENTREPRISE
+# ENTREPRISE POUR UTILISATEUR
 # ==========================================
 
-def entreprise(request):
+def entreprise_utilisateur(request):
 
     if 'utilisateur_id' not in request.session:
         return redirect('connexion')
 
+    utilisateur = get_object_or_404(
+        utili,
+        id=request.session['utilisateur_id']
+    )
+
     return render(
         request,
-        'appretrut/utilisateur/entreprise.html'
+        'appretrut/utilisateur/entreprise.html',
+        {
+            'utilisateur': utilisateur
+        }
     )
 
 
 # ==========================================
-# OFFRE
+# OFFRE UTILISATEUR
 # ==========================================
 
 def offre(request):
@@ -228,101 +244,6 @@ def tabbord(request):
             'utilisateur': utilisateur
         }
     )
-
-
-
-
-
-
-
-
-
-
-# ==========================================
-# ACCUEIL entreprise
-# ==========================================
-
-def entreprise(request):
-
-    if 'utilisateur_id' not in request.session:
-        return redirect('connexion')
-
-    utilisateur = get_object_or_404(
-        utili,
-        id=request.session['utilisateur_id']
-    )
-
-    return render(
-        request,
-        'appretrut/entreprise/acceuil_entreprise.html',
-        {
-            'utilisateur': utilisateur
-        }
-    )
-
-
-# ==========================================
-# CONTACT entreprise
-# ==========================================
-
-def contact_entreprise(request):
-
-    if 'utilisateur_id' not in request.session:
-        return redirect('connexion')
-
-    return render(
-        request,
-        'appretrut/entreprise/contact_entreprise.html'
-    )
-
-
-# ==========================================
-# ENTREPRISE entreprise
-# ==========================================
-
-def entreprise_enprise(request):
-
-    if 'utilisateur_id' not in request.session:
-        return redirect('connexion')
-
-    return render(
-        request,
-        'appretrut/entreprise/entreprise_entreprise.html'
-    )
-
-
-# ==========================================
-# OFFRE entreprise
-# ==========================================
-
-def offre_entreprise(request):
-
-    if 'utilisateur_id' not in request.session:
-        return redirect('connexion')
-
-    return render(
-        request,
-        'appretrut/entreprise/offre_entreprise.html'
-    )
-
-
-# ==========================================
-# TABLEAU DE BORD entreprise
-# ==========================================
-
-def tabbord_entreprise(request):
-
-    if 'utilisateur_id' not in request.session:
-        return redirect('connexion')
-
-
-
-    return render(
-        request,
-        'appretrut/entreprise/tabbord_entreprise.html',
-        
-    )
-
 
 
 # ==========================================
@@ -375,7 +296,92 @@ def modifier_profil(request):
 
 
 # ==========================================
-# ADMINISTRATEUR
+# ACCUEIL ENTREPRISE
+# ==========================================
+
+def acceuil_entreprise(request):
+
+
+
+    return render(
+        request,
+        'appretrut/entreprise/acceuil_entreprise.html',
+
+    )
+
+
+# ==========================================
+# CONTACT ENTREPRISE
+# ==========================================
+
+def contact_entreprise(request):
+
+   
+
+    return render(
+        request,
+        'appretrut/entreprise/contact_entreprise.html'
+    )
+
+
+# ==========================================
+# INFORMATIONS ENTREPRISE
+# ==========================================
+
+def entreprise_enprise(request):
+
+
+
+    return render(
+        request,
+        'appretrut/entreprise/entreprise_entreprise.html'
+    )
+
+
+# ==========================================
+# OFFRE ENTREPRISE
+# ==========================================
+
+def offre_entreprise(request):
+
+
+    return render(
+        request,
+        'appretrut/entreprise/offre_entreprise.html'
+    )
+
+
+# ==========================================
+# TABLEAU DE BORD ENTREPRISE
+# ==========================================
+
+def tabbord_entreprise(request):
+
+ 
+
+   
+
+    return render(
+        request,
+        'appretrut/entreprise/tabbord_entreprise.html',
+   
+    )
+
+
+# ==========================================
+# A PROPOS
+# ==========================================
+
+def aprpos(request):
+
+    return render(
+        request,
+        'aprpos.html'
+    )
+
+
+# ==========================================
+# ACCUEIL ADMINISTRATEUR
 # ==========================================
 
 def acceuil_administrateur(request):
@@ -383,15 +389,6 @@ def acceuil_administrateur(request):
     return render(
         request,
         'appretrut/administrateur/acceuil_administrateur.html'
-    )
-
-
-
-def aprpos(request):
-
-    return render(
-        request,
-        'aprpos.html'
     )
 
 
@@ -445,6 +442,11 @@ def supprimer_utilisateur(request, id):
 
     utilisateur.delete()
 
+    messages.success(
+        request,
+        "Utilisateur supprimé avec succès."
+    )
+
     return redirect(
         'tabbord_administrateur'
     )
@@ -496,4 +498,3 @@ def contact_administrateur(request):
         request,
         'appretrut/administrateur/contact_administrateur.html'
     )
-
