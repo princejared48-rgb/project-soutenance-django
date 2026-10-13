@@ -1,500 +1,844 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.views.decorators.http import require_POST
 from django.contrib.auth.hashers import make_password, check_password
 
-from .forms import UtiliForm
-from .models import utili
-
+from .forms import UtiliForm, EntreForm, AdministrateurForm
+from .models import utili, entre, administrateur
 
 # ==========================================
+
 # ACCUEIL TOTAL
+
 # ==========================================
 
 def acceuiltotal(request):
-    return render(
-        request,
-        'appretrut/acceuiltotal.html'
-    )
+    return render(request, 'appretrut/acceuiltotal.html')
+# ==========================================
 
+# INSCRIPTION SELON LE RÔLE
 
 # ==========================================
-# INSCRIPTION
-# ==========================================
+
 
 def inscription(request):
+    role_choisi = 'utilisateur'
+
+    formulaires = {
+        'utilisateur': UtiliForm,
+        'entreprise': EntreForm,
+        'administrateur': AdministrateurForm,
+    }
 
     if request.method == 'POST':
+        role_choisi = request.POST.get('role', 'utilisateur')
 
-        form = UtiliForm(request.POST)
+        if role_choisi not in formulaires:
+            messages.error(request, "Le rôle sélectionné est invalide.")
+            return redirect('inscription')
+
+        Formulaire = formulaires[role_choisi]
+        form = Formulaire(request.POST)
 
         if form.is_valid():
+            email = form.cleaned_data['email'].strip()
 
-            utilisateur = form.save(commit=False)
-
-            # Sécuriser le mot de passe
-            utilisateur.motdepasse = make_password(
-                utilisateur.motdepasse
+            email_existant = (
+                utili.objects.filter(email__iexact=email).exists()
+                or entre.objects.filter(email__iexact=email).exists()
+                or administrateur.objects.filter(email__iexact=email).exists()
             )
 
-            utilisateur.save()
+            if email_existant:
+                form.add_error(
+                    'email',
+                    "Cette adresse e-mail est déjà utilisée."
+                )
+            else:
+                compte = form.save(commit=False)
+                compte.motdepasse = make_password(compte.motdepasse)
+                compte.save()
 
-            # Garder l'utilisateur connecté
-            request.session['utilisateur_id'] = utilisateur.id
+                request.session.flush()
+                request.session['compte_id'] = compte.id
+                request.session['role'] = role_choisi
 
-            messages.success(
-                request,
-                "Votre compte a été créé avec succès."
-            )
+                messages.success(
+                    request,
+                    "Votre compte a été créé avec succès."
+                )
 
-            return redirect('acceuil_utilisateur')
+                if role_choisi == 'utilisateur':
+                    return redirect('acceuil_utilisateur')
+                elif role_choisi == 'entreprise':
+                    return redirect('acceuil_entreprise')
+                else:
+                    return redirect('acceuil_administrateur')
 
     else:
-
         form = UtiliForm()
 
-    return render(
+return render(
+    
         request,
         'appretrut/inscription/inscription.html',
         {
-            'form': form
+            'form': form,
+            'role_choisi': role_choisi,
         }
-    )
+ )
+
+
 
 
 # ==========================================
+
 # CONNEXION
+
 # ==========================================
 
 def connexion(request):
 
-    if request.method == 'POST':
 
-        email = request.POST.get(
-            'email',
-            ''
-        ).strip()
+ if request.method == 'POST':
 
-        motdepasse = request.POST.get(
-            'motdepasse',
-            ''
-        )
+    email = request.POST.get(
+        'email',
+        ''
+    ).strip()
 
-        try:
+    motdepasse = request.POST.get(
+        'motdepasse',
+        ''
+    )
 
-            utilisateur = utili.objects.get(
-                email__iexact=email
-            )
+    # Rechercher le compte dans les trois modèles
+    modeles = [
+        ('utilisateur', utili),
+        ('entreprise', entre),
+        ('administrateur', administrateur),
+    ]
 
-            # Vérifier le mot de passe
+    compte_trouve = None
+    role_trouve = None
+
+    for role, Modele in modeles:
+
+        compte = Modele.objects.filter(
+            email__iexact=email
+        ).first()
+
+        if compte is not None:
+
             if check_password(
                 motdepasse,
-                utilisateur.motdepasse
+                compte.motdepasse
             ):
+                compte_trouve = compte
+                role_trouve = role
+                break
 
-                # Nouvelle session
-                request.session.cycle_key()
+    # Si les identifiants sont corrects
+    if compte_trouve is not None:
 
-                # Enregistrer l'utilisateur connecté
-                request.session['utilisateur_id'] = utilisateur.id
+        # Renouveler la session
+        request.session.flush()
 
-                messages.success(
-                    request,
-                    "Connexion réussie."
-                )
+        request.session['compte_id'] = compte_trouve.id
+        request.session['role'] = role_trouve
 
-                return redirect(
-                    'acceuil_utilisateur'
-                )
+        messages.success(
+            request,
+            "Connexion réussie."
+        )
 
-            else:
+        # Rediriger selon le type de compte
+        if role_trouve == 'utilisateur':
+            return redirect('acceuil_utilisateur')
 
-                return render(
-                    request,
-                    'appretrut/connexion.html',
-                    {
-                        'erreur':
-                        'Adresse e-mail ou mot de passe incorrect.'
-                    }
-                )
+        elif role_trouve == 'entreprise':
+            return redirect('acceuil_entreprise')
 
-        except utili.DoesNotExist:
+        else:
+            return redirect('acceuil_administrateur')
 
-            return render(
-                request,
-                'appretrut/connexion.html',
-                {
-                    'erreur':
-                    'Adresse e-mail ou mot de passe incorrect.'
-                }
-            )
+    else:
 
-    return render(
-        request,
-        'appretrut/connexion.html'
-    )
+        messages.error(
+            request,
+            "Adresse e-mail ou mot de passe incorrect."
+        )
+
+return render(
+    request,
+    'appretrut/connexion.html'
+)
 
 
 # ==========================================
-# DECONNEXION
+
+# DÉCONNEXION
+
 # ==========================================
 
 def deconnexion(request):
 
-    request.session.flush()
 
-    return redirect(
-        'connexion'
-    )
+ request.session.flush()
+
+messages.success(
+    request,
+    "Vous avez été déconnecté."
+)
+
+return redirect('connexion')
 
 
 # ==========================================
+
+# RÉCUPÉRER LE COMPTE CONNECTÉ
+
+# ==========================================
+
+def obtenir_utilisateur_connecte(request):
+
+
+ compte_id = request.session.get('compte_id')
+role = request.session.get('role')
+
+# Vérifier la présence des informations de session
+if not compte_id or not role:
+    return None
+
+# Associer chaque rôle à son modèle
+modeles = {
+    'utilisateur': utili,
+    'entreprise': entre,
+    'administrateur': administrateur,
+}
+
+Modele = modeles.get(role)
+
+if Modele is None:
+    request.session.flush()
+    return None
+
+try:
+
+    return Modele.objects.get(
+        id=compte_id
+    )
+
+except Modele.DoesNotExist:
+
+    request.session.flush()
+    return None
+
+
+# ==========================================
+
+# VÉRIFIER LE RÔLE
+
+# ==========================================
+
+def verifier_role(request, role_attendu):
+
+
+ compte = obtenir_utilisateur_connecte(request)
+
+if compte is None:
+    return None
+
+role_session = request.session.get('role')
+
+if role_session != role_attendu:
+    return None
+
+return compte
+
+
+# ==========================================
+
 # ACCUEIL UTILISATEUR
+
 # ==========================================
 
 def acceuil_utilisateur(request):
 
-    if 'utilisateur_id' not in request.session:
+
+ utilisateur = verifier_role(
+    request,
+    'utilisateur'
+)
+
+if utilisateur is None:
+
+    if not request.session.get('compte_id'):
         return redirect('connexion')
 
-    utilisateur = get_object_or_404(
-        utili,
-        id=request.session['utilisateur_id']
+    messages.error(
+        request,
+        "Vous n'avez pas accès à cet espace."
     )
 
-    return render(
-        request,
-        'appretrut/utilisateur/acceuil_utilisateur.html',
-        {
-            'utilisateur': utilisateur
-        }
-    )
+    return redirect('acceuiltotal')
+
+return render(
+    request,
+    'appretrut/utilisateur/acceuil_utilisateur.html',
+    {
+        'utilisateur': utilisateur
+    }
+)
 
 
 # ==========================================
+
 # CONTACT UTILISATEUR
+
 # ==========================================
 
 def contact(request):
 
-    if 'utilisateur_id' not in request.session:
-        return redirect('connexion')
 
-    return render(
-        request,
-        'appretrut/utilisateur/contact.html'
-    )
+ utilisateur = verifier_role(
+    request,
+    'utilisateur'
+)
+
+if utilisateur is None:
+    return redirect('connexion')
+
+return render(
+    request,
+    'appretrut/utilisateur/contact.html',
+    {
+        'utilisateur': utilisateur
+    }
+)
 
 
 # ==========================================
-# ENTREPRISE POUR UTILISATEUR
+
+# ENTREPRISES POUR UTILISATEUR
+
 # ==========================================
 
 def entreprise_utilisateur(request):
 
-    if 'utilisateur_id' not in request.session:
-        return redirect('connexion')
 
-    utilisateur = get_object_or_404(
-        utili,
-        id=request.session['utilisateur_id']
-    )
+ utilisateur = verifier_role(
+    request,
+    'utilisateur'
+)
 
-    return render(
-        request,
-        'appretrut/utilisateur/entreprise.html',
-        {
-            'utilisateur': utilisateur
-        }
-    )
+if utilisateur is None:
+    return redirect('connexion')
+
+return render(
+    request,
+    'appretrut/utilisateur/entreprise.html',
+    {
+        'utilisateur': utilisateur
+    }
+)
 
 
 # ==========================================
-# OFFRE UTILISATEUR
+
+# OFFRES POUR UTILISATEUR
+
 # ==========================================
 
 def offre(request):
 
-    if 'utilisateur_id' not in request.session:
-        return redirect('connexion')
 
-    return render(
-        request,
-        'appretrut/utilisateur/offre.html'
-    )
+ utilisateur = verifier_role(
+    request,
+    'utilisateur'
+)
+
+if utilisateur is None:
+    return redirect('connexion')
+
+return render(
+    request,
+    'appretrut/utilisateur/offre.html',
+    {
+        'utilisateur': utilisateur
+    }
+)
 
 
 # ==========================================
+
 # TABLEAU DE BORD UTILISATEUR
+
 # ==========================================
 
 def tabbord(request):
 
-    if 'utilisateur_id' not in request.session:
-        return redirect('connexion')
 
-    utilisateur = get_object_or_404(
-        utili,
-        id=request.session['utilisateur_id']
-    )
+ utilisateur = verifier_role(
+    request,
+    'utilisateur'
+)
 
-    return render(
-        request,
-        'appretrut/utilisateur/tabbord.html',
-        {
-            'utilisateur': utilisateur
-        }
-    )
+if utilisateur is None:
+    return redirect('connexion')
+
+return render(
+    request,
+    'appretrut/utilisateur/tabbord.html',
+    {
+        'utilisateur': utilisateur
+    }
+)
 
 
 # ==========================================
-# MODIFIER PROFIL
+
+# MODIFIER LE PROFIL UTILISATEUR
+
 # ==========================================
 
 def modifier_profil(request):
 
-    if 'utilisateur_id' not in request.session:
-        return redirect('connexion')
 
-    utilisateur = get_object_or_404(
-        utili,
-        id=request.session['utilisateur_id']
+ utilisateur = verifier_role(
+    request,
+    'utilisateur'
+)
+
+if utilisateur is None:
+    return redirect('connexion')
+
+if request.method == 'POST':
+
+    form = UtiliForm(
+        request.POST,
+        instance=utilisateur
     )
 
-    if request.method == 'POST':
+    if form.is_valid():
 
-        form = UtiliForm(
-            request.POST,
-            request.FILES,
-            instance=utilisateur
+        profil = form.save(commit=False)
+
+        # Conserver le mot de passe existant
+        profil.motdepasse = utilisateur.motdepasse
+
+        # Empêcher la modification du rôle
+        profil.role = 'utilisateur'
+
+        profil.save()
+
+        messages.success(
+            request,
+            "Votre profil a été modifié avec succès."
         )
 
-        if form.is_valid():
-
-            form.save()
-
-            messages.success(
-                request,
-                "Votre profil a été modifié."
-            )
-
-            return redirect('tabbord')
+        return redirect('tabbord')
 
     else:
 
-        form = UtiliForm(
-            instance=utilisateur
+        messages.error(
+            request,
+            "Veuillez corriger les erreurs du formulaire."
         )
 
-    return render(
-        request,
-        'appretrut/utilisateur/modifier_profil.html',
-        {
-            'form': form,
-            'utilisateur': utilisateur
-        }
+else:
+
+    form = UtiliForm(
+        instance=utilisateur
     )
+
+return render(
+    request,
+    'appretrut/utilisateur/modifier_profil.html',
+    {
+        'form': form,
+        'utilisateur': utilisateur
+    }
+)
 
 
 # ==========================================
+
 # ACCUEIL ENTREPRISE
+
 # ==========================================
 
 def acceuil_entreprise(request):
 
 
+ utilisateur = verifier_role(
+    request,
+    'entreprise'
+)
 
-    return render(
-        request,
-        'appretrut/entreprise/acceuil_entreprise.html',
+if utilisateur is None:
+    return redirect('connexion')
 
-    )
+return render(
+    request,
+    'appretrut/entreprise/acceuil_entreprise.html',
+    {
+        'utilisateur': utilisateur
+    }
+)
 
 
 # ==========================================
+
 # CONTACT ENTREPRISE
+
 # ==========================================
 
 def contact_entreprise(request):
 
-   
 
-    return render(
-        request,
-        'appretrut/entreprise/contact_entreprise.html'
-    )
+ utilisateur = verifier_role(
+    request,
+    'entreprise'
+)
+
+if utilisateur is None:
+    return redirect('connexion')
+
+return render(
+    request,
+    'appretrut/entreprise/contact_entreprise.html',
+    {
+        'utilisateur': utilisateur
+    }
+)
 
 
 # ==========================================
+
 # INFORMATIONS ENTREPRISE
+
 # ==========================================
 
 def entreprise_enprise(request):
 
+ utilisateur = verifier_role(
+    request,
+    'entreprise'
+)
 
+if utilisateur is None:
+    return redirect('connexion')
 
-    return render(
-        request,
-        'appretrut/entreprise/entreprise_entreprise.html'
-    )
+return render(
+    request,
+    'appretrut/entreprise/entreprise_entreprise.html',
+    {
+        'utilisateur': utilisateur
+    }
+)
 
 
 # ==========================================
-# OFFRE ENTREPRISE
+
+# OFFRES ENTREPRISE
+
 # ==========================================
 
 def offre_entreprise(request):
 
 
-    return render(
-        request,
-        'appretrut/entreprise/offre_entreprise.html'
-    )
+ utilisateur = verifier_role(
+    request,
+    'entreprise'
+)
+
+if utilisateur is None:
+    return redirect('connexion')
+
+return render(
+    request,
+    'appretrut/entreprise/offre_entreprise.html',
+    {
+        'utilisateur': utilisateur
+    }
+)
 
 
 # ==========================================
+
 # TABLEAU DE BORD ENTREPRISE
+
 # ==========================================
 
 def tabbord_entreprise(request):
 
- 
 
-   
+ utilisateur = verifier_role(
+    request,
+    'entreprise'
+)
 
-    return render(
-        request,
-        'appretrut/entreprise/tabbord_entreprise.html',
-   
-    )
+if utilisateur is None:
+    return redirect('connexion')
+
+return render(
+    request,
+    'appretrut/entreprise/tabbord_entreprise.html',
+    {
+        'utilisateur': utilisateur
+    }
+)
 
 
 # ==========================================
-# A PROPOS
+
+# À PROPOS
+
 # ==========================================
 
 def aprpos(request):
 
-    return render(
-        request,
-        'aprpos.html'
-    )
+
+ return render(
+    request,
+    'aprpos.html'
+)
 
 
 # ==========================================
+
 # ACCUEIL ADMINISTRATEUR
+
 # ==========================================
 
 def acceuil_administrateur(request):
 
-    return render(
-        request,
-        'appretrut/administrateur/acceuil_administrateur.html'
-    )
+
+ compte_admin = verifier_role(
+    request,
+    'administrateur'
+)
+
+if compte_admin is None:
+    return redirect('connexion')
+
+return render(
+    request,
+    'appretrut/administrateur/acceuil_administrateur.html',
+    {
+        'utilisateur': compte_admin,
+        'administrateur': compte_admin,
+    }
+)
 
 
 # ==========================================
+
 # TABLEAU DE BORD ADMINISTRATEUR
+
 # ==========================================
 
 def tabbord_administrateur(request):
 
-    utilisateurs = utili.objects.all()
 
-    return render(
-        request,
-        'appretrut/administrateur/tabbord_administrateur.html',
-        {
-            'utilisateurs': utilisateurs
-        }
-    )
+ compte_admin = verifier_role(
+    request,
+    'administrateur'
+)
+
+if compte_admin is None:
+    return redirect('connexion')
+
+# Récupérer les comptes de chaque table
+utilisateurs = utili.objects.filter(
+    role='utilisateur'
+)
+
+entreprises = entre.objects.all()
+
+administrateurs = administrateur.objects.all()
+
+return render(
+    request,
+    'appretrut/administrateur/tabbord_administrateur.html',
+    {
+        'utilisateur': compte_admin,
+        'administrateur_connecte': compte_admin,
+        'utilisateurs': utilisateurs,
+        'entreprises': entreprises,
+        'administrateurs': administrateurs,
+    }
+)
 
 
 # ==========================================
+
 # INFORMATIONS UTILISATEUR
+
 # ==========================================
 
 def infos_utilisateur(request, id):
 
-    utilisateur = get_object_or_404(
-        utili,
-        id=id
-    )
 
-    return render(
-        request,
-        'appretrut/administrateur/infos_utilisateur.html',
-        {
-            'utilisateur': utilisateur
-        }
-    )
+ compte_admin = verifier_role(
+    request,
+    'administrateur'
+)
 
+if compte_admin is None:
+    return redirect('connexion')
+
+utilisateur = get_object_or_404(
+    utili,
+    id=id
+)
+
+return render(
+    request,
+    'appretrut/administrateur/infos_utilisateur.html',
+    {
+        'administrateur': compte_admin,
+        'utilisateur': utilisateur,
+    }
+)
 
 # ==========================================
-# SUPPRIMER UTILISATEUR
+
+# SUPPRIMER UN UTILISATEUR
+
 # ==========================================
 
+@require_POST
 def supprimer_utilisateur(request, id):
 
-    utilisateur = get_object_or_404(
-        utili,
-        id=id
-    )
 
-    utilisateur.delete()
+ compte_admin = verifier_role(
+    request,
+    'administrateur'
+)
 
-    messages.success(
-        request,
-        "Utilisateur supprimé avec succès."
-    )
+if compte_admin is None:
+    return redirect('connexion')
 
-    return redirect(
-        'tabbord_administrateur'
-    )
+utilisateur = get_object_or_404(
+    utili,
+    id=id
+)
+
+utilisateur.delete()
+
+messages.success(
+    request,
+    "Utilisateur supprimé avec succès."
+)
+
+return redirect('tabbord_administrateur')
 
 
 # ==========================================
-# ENTREPRISE ADMINISTRATEUR
+
+# ENTREPRISES ADMINISTRATEUR
+
 # ==========================================
 
 def entreprise_administrateur(request):
 
-    return render(
-        request,
-        'appretrut/administrateur/entreprise_administrateur.html'
-    )
+
+ compte_admin = verifier_role(
+    request,
+    'administrateur'
+)
+
+if compte_admin is None:
+    return redirect('connexion')
+
+entreprises = entre.objects.all()
+
+return render(
+    request,
+    'appretrut/administrateur/entreprise_administrateur.html',
+    {
+        'administrateur': compte_admin,
+        'entreprises': entreprises,
+    }
+)
 
 
 # ==========================================
-# OFFRE ADMINISTRATEUR
+
+# OFFRES ADMINISTRATEUR
+
 # ==========================================
 
 def offre_administrateur(request):
 
-    return render(
-        request,
-        'appretrut/administrateur/offre_administrateur.html'
-    )
+
+ compte_admin = verifier_role(
+    request,
+    'administrateur'
+)
+
+if compte_admin is None:
+    return redirect('connexion')
+
+return render(
+    request,
+    'appretrut/administrateur/offre_administrateur.html',
+    {
+        'administrateur': compte_admin
+    }
+)
 
 
 # ==========================================
-# CANDIDATURE ADMINISTRATEUR
+
+# CANDIDATURES ADMINISTRATEUR
+
 # ==========================================
 
 def candidature_administrateur(request):
 
-    return render(
-        request,
-        'appretrut/administrateur/candidature_administrateur.html'
-    )
+
+ compte_admin = verifier_role(
+    request,
+    'administrateur'
+)
+
+if compte_admin is None:
+    return redirect('connexion')
+
+return render(
+    request,
+    'appretrut/administrateur/candidature_administrateur.html',
+    {
+        'administrateur': compte_admin
+    }
+)
 
 
 # ==========================================
-# CONTACT ADMINISTRATEUR
+
+# CONTACTS ADMINISTRATEUR
+
 # ==========================================
 
 def contact_administrateur(request):
 
-    return render(
-        request,
-        'appretrut/administrateur/contact_administrateur.html'
-    )
+
+ compte_admin = verifier_role(
+    request,
+    'administrateur'
+)
+
+if compte_admin is None:
+    return redirect('connexion')
+
+return render(
+    request,
+    'appretrut/administrateur/contact_administrateur.html',
+    {
+        'administrateur': compte_admin
+    }
+)
+

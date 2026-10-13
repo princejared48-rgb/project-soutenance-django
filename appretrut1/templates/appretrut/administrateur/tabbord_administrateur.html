@@ -1,36 +1,25 @@
-{% load static %}
 
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
-
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Tableau de bord | Appretruct</title>
 
     <!-- BOOTSTRAP CSS -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
         rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-        crossorigin="anonymous"
     >
 
     <!-- GOOGLE FONT -->
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
@@ -48,306 +37,340 @@
         rel="stylesheet"
         href="{% static 'appretrut/administrateur/css/tabbord.css' %}"
     >
-
-    <title>Tableau de bord | Appretruct</title>
-
 </head>
-
 
 <body>
 
+    <!-- HEADER ADMINISTRATEUR -->
+    {% include 'appretrut/administrateur/headerad.html' %}
 
-{% include 'appretrut/administrateur/headerad.html' %}
 
+    <main class="container-fluid py-4 px-3 px-md-4">
 
-<!-- =====================================================
-     CONTENU PRINCIPAL
-===================================================== -->
+        <!-- TITRE PRINCIPAL -->
+        <div class="mb-4">
+            <h1 class="fw-bold">Tableau de bord</h1>
 
-<main>
+            <p class="text-muted">
+                Gestion des comptes Appretruct
+            </p>
+        </div>
 
-    <section class="part utilisateur">
 
-        <table class="table table-bordered">
+        <!-- MESSAGES -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                    {{ message }}
 
-            <thead>
-
-                <tr>
-
-                    <th>Photo</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Email</th>
-                    <th>Actions</th>
-
-                </tr>
-
-            </thead>
-
-
-            <tbody>
-
-            {% for utilisateur in utilisateurs %}
-
-                <tr>
-
-                    <!-- PHOTO -->
-
-                    <td>
-
-                        {% if utilisateur.photo %}
-
-                            <img
-                                src="{{ utilisateur.photo.url }}"
-                                alt="Photo de {{ utilisateur.prenom }}"
-                                width="70"
-                                height="70"
-                                style="
-                                    object-fit: cover;
-                                    border-radius: 50%;
-                                "
-                            >
-
-                        {% else %}
-
-                            <span>Aucune photo</span>
-
-                        {% endif %}
-
-                    </td>
-
-
-                    <!-- NOM -->
-
-                    <td>
-                        {{ utilisateur.nom }}
-                    </td>
-
-
-                    <!-- PRÉNOM -->
-
-                    <td>
-                        {{ utilisateur.prenom }}
-                    </td>
-
-
-                    <!-- EMAIL -->
-
-                    <td>
-                        {{ utilisateur.email }}
-                    </td>
-
-
-                    <!-- ACTIONS -->
-
-                    <td>
-
-                        <!-- BOUTON INFOS -->
-
-                        <button
-                            type="button"
-                            class="btn btn-primary"
-                            data-bs-toggle="modal"
-                            data-bs-target="#modalUtilisateur{{ utilisateur.id }}"
-                        >
-
-                            + Infos
-
-                        </button>
-
-
-                        <!-- BOUTON SUPPRIMER -->
-
-                        <a
-                            href="{% url 'supprimer_utilisateur' utilisateur.id %}"
-                            class="btn btn-danger"
-                        >
-
-                            Supprimer
-
-                        </a>
-
-                    </td>
-
-                </tr>
-
-
-            {% empty %}
-
-                <tr>
-
-                    <td
-                        colspan="5"
-                        class="text-center"
-                    >
-
-                        Aucun candidat inscrit.
-
-                    </td>
-
-                </tr>
-
-            {% endfor %}
-
-            </tbody>
-
-        </table>
-
-    </section>
-
-</main>
-
-
-<!-- =====================================================
-     MODALS
-===================================================== -->
-
-{% for utilisateur in utilisateurs %}
-
-<div
-    class="modal fade"
-    id="modalUtilisateur{{ utilisateur.id }}"
-    tabindex="-1"
-    aria-labelledby="modalLabel{{ utilisateur.id }}"
-    aria-hidden="true"
->
-
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-
-        <div class="modal-content">
-
-
-            <!-- HEADER DU MODAL -->
-
-            <div class="modal-header">
-
-                <h5
-                    class="modal-title"
-                    id="modalLabel{{ utilisateur.id }}"
-                >
-
-                    Informations du candidat
-
-                </h5>
-
-
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Fermer"
-                >
-                </button>
-
-            </div>
-
-
-            <!-- BODY DU MODAL -->
-
-            <div class="modal-body">
-
-
-                <!-- PHOTO + NOM -->
-
-                <div class="text-center mb-4">
-
-                    <h4 class="mt-3 mb-0">
-
-                        {{ utilisateur.prenom }}
-                        {{ utilisateur.nom }}
-
-                    </h4>
-
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Fermer">
+                    </button>
                 </div>
+            {% endfor %}
+        {% endif %}
 
 
-                <!-- INFORMATIONS -->
+        <!-- ================================================= -->
+        <!-- NAVIGATION ENTRE LES TROIS TABLEAUX -->
+        <!-- ================================================= -->
 
-                <div class="row">
+        <ul class="nav nav-tabs mb-4" id="comptesTab" role="tablist">
+
+            <li class="nav-item" role="presentation">
+                <button
+                    class="nav-link active"
+                    id="utilisateurs-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#utilisateurs"
+                    type="button"
+                    role="tab">
+
+                    <i class="fas fa-users me-2"></i>
+                    Utilisateurs
+
+                    <span class="badge bg-primary">
+                        {{ utilisateurs.count }}
+                    </span>
+                </button>
+            </li>
 
 
-                    <!-- COLONNE GAUCHE -->
+            <li class="nav-item" role="presentation">
+                <button
+                    class="nav-link"
+                    id="entreprises-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#entreprises"
+                    type="button"
+                    role="tab">
 
-                    <div class="col-md-6">
+                    <i class="fas fa-building me-2"></i>
+                    Entreprises
+
+                    <span class="badge bg-success">
+                        {{ entreprises.count }}
+                    </span>
+                </button>
+            </li>
 
 
-                        <div class="info-modal">
+            <li class="nav-item" role="presentation">
+                <button
+                    class="nav-link"
+                    id="administrateurs-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#administrateurs"
+                    type="button"
+                    role="tab">
 
-                            <strong>
-                                Nom :
-                            </strong>
+                    <i class="fas fa-user-shield me-2"></i>
+                    Administrateurs
 
-                            <span>
-                                {{ utilisateur.nom }}
-                            </span>
+                    <span class="badge bg-danger">
+                        {{ administrateurs.count }}
+                    </span>
+                </button>
+            </li>
+
+        </ul>
+
+
+        <div class="tab-content" id="comptesTabContent">
+
+
+            <!-- ================================================= -->
+            <!-- TABLEAU 1 : UTILISATEURS -->
+            <!-- ================================================= -->
+
+            <div
+                class="tab-pane fade show active"
+                id="utilisateurs"
+                role="tabpanel">
+
+                <div class="card shadow-sm border-0">
+
+                    <div class="card-header bg-primary text-white py-3">
+                        <h5 class="mb-0">
+                            <i class="fas fa-users me-2"></i>
+                            Liste des utilisateurs
+                        </h5>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered table-hover align-middle">
+
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Prénom</th>
+                                        <th>Email</th>
+                                        <th>Téléphone</th>
+                                        <th>Ville</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    {% for utilisateur in utilisateurs %}
+
+                                    <tr>
+                                        <td>{{ utilisateur.nom }}</td>
+
+                                        <td>{{ utilisateur.prenom }}</td>
+
+                                        <td>{{ utilisateur.email }}</td>
+
+                                        <td>{{ utilisateur.telephone }}</td>
+
+                                        <td>
+                                            {{ utilisateur.ville|default:"Non renseignée" }}
+                                        </td>
+
+                                        <td class="text-nowrap">
+
+                                            <button
+                                                type="button"
+                                                class="btn btn-primary btn-sm"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#modalUtilisateur{{ utilisateur.id }}">
+
+                                                <i class="fas fa-circle-info"></i>
+                                                Infos
+                                            </button>
+
+                                            <form
+                                                method="POST"
+                                                action="{% url 'supprimer_utilisateur' utilisateur.id %}"
+                                                class="d-inline"
+                                                onsubmit="return confirm('Voulez-vous vraiment supprimer ce compte utilisateur ?');">
+
+                                                {% csrf_token %}
+
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-danger btn-sm">
+
+                                                    <i class="fas fa-trash"></i>
+                                                    Supprimer
+                                                </button>
+
+                                            </form>
+
+                                        </td>
+                                    </tr>
+
+
+                                    <!-- MODALE UTILISATEUR -->
+
+                                    <div class="modal fade"
+                                         id="modalUtilisateur{{ utilisateur.id }}"
+                                         tabindex="-1"
+                                         aria-hidden="true">
+
+                                        <div class="modal-dialog modal-lg modal-dialog-centered">
+
+                                            <div class="modal-content">
+
+                                                <div class="modal-header">
+
+                                                    <h5 class="modal-title">
+                                                        Informations de l'utilisateur
+                                                    </h5>
+
+                                                    <button
+                                                        type="button"
+                                                        class="btn-close"
+                                                        data-bs-dismiss="modal">
+                                                    </button>
+
+                                                </div>
+
+                                                <div class="modal-body">
+
+                                                    <div class="text-center mb-4">
+
+                                                        <div class="mb-3">
+                                                            <i class="fas fa-user-circle fa-4x text-primary"></i>
+                                                        </div>
+
+                                                        <h4>
+                                                            {{ utilisateur.prenom }}
+                                                            {{ utilisateur.nom }}
+                                                        </h4>
+
+                                                        <span class="badge bg-primary">
+                                                            Utilisateur
+                                                        </span>
+
+                                                    </div>
+
+                                                    <div class="row g-3">
+
+                                                        <div class="col-md-6">
+                                                            <strong>Nom :</strong>
+                                                            {{ utilisateur.nom }}
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <strong>Prénom :</strong>
+                                                            {{ utilisateur.prenom }}
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <strong>Date de naissance :</strong>
+                                                            {{ utilisateur.date_naissance }}
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <strong>Email :</strong>
+                                                            {{ utilisateur.email }}
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <strong>Téléphone :</strong>
+                                                            {{ utilisateur.telephone }}
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <strong>Ville :</strong>
+                                                            {{ utilisateur.ville|default:"Non renseignée" }}
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <strong>Nationalité :</strong>
+                                                            {{ utilisateur.nationalite|default:"Non renseignée" }}
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <strong>Domaine :</strong>
+                                                            {{ utilisateur.domaine|default:"Non renseigné" }}
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <strong>Métier :</strong>
+                                                            {{ utilisateur.metier|default:"Non renseigné" }}
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <strong>Expérience :</strong>
+                                                            {{ utilisateur.experience|default:"Non renseignée" }}
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <strong>Niveau d'études :</strong>
+                                                            {{ utilisateur.niveau_etudes|default:"Non renseigné" }}
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <strong>Compétences :</strong>
+                                                            {{ utilisateur.competence|default:"Non renseignées" }}
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="modal-footer">
+
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">
+
+                                                        Fermer
+                                                    </button>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    {% empty %}
+
+                                    <tr>
+                                        <td colspan="6" class="text-center py-4">
+                                            Aucun utilisateur inscrit.
+                                        </td>
+                                    </tr>
+
+                                    {% endfor %}
+
+                                </tbody>
+
+                            </table>
 
                         </div>
-
-
-                        <div class="info-modal">
-
-                            <strong>
-                                Prénom :
-                            </strong>
-
-                            <span>
-                                {{ utilisateur.prenom }}
-                            </span>
-
-                        </div>
-
-
-                        <div class="info-modal">
-
-                            <strong>
-                                Mot de passe :
-                            </strong>
-
-                            <span>
-                                {{ utilisateur.motdepasse }}
-                            </span>
-
-                        </div>
-
-
-                        <div class="info-modal">
-
-                            <strong>
-                                Date de naissance :
-                            </strong>
-
-                            <span>
-                                {{ utilisateur.date_naissance }}
-                            </span>
-
-                        </div>
-
-
-                        <div class="info-modal">
-
-                            <strong>
-                                Email :
-                            </strong>
-
-                            <span>
-                                {{ utilisateur.email }}
-                            </span>
-
-                        </div>
-
-
-                        <div class="info-modal">
-
-                            <strong>
-                                Téléphone :
-                            </strong>
-
-                            <span>
-                                {{ utilisateur.telephone }}
-                            </span>
-
-                        </div>
-
 
                     </div>
 
@@ -356,50 +379,279 @@
             </div>
 
 
-            <!-- FOOTER DU MODAL -->
 
-            <div class="modal-footer">
+            <!-- ================================================= -->
+            <!-- TABLEAU 2 : ENTREPRISES -->
+            <!-- ================================================= -->
 
-                <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                >
+            <div
+                class="tab-pane fade"
+                id="entreprises"
+                role="tabpanel">
 
-                    Fermer
+                <div class="card shadow-sm border-0">
 
-                </button>
+                    <div class="card-header bg-success text-white py-3">
+
+                        <h5 class="mb-0">
+                            <i class="fas fa-building me-2"></i>
+                            Liste des entreprises
+                        </h5>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered table-hover align-middle">
+
+                                <thead class="table-light">
+
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Prénom</th>
+                                        <th>Email</th>
+                                        <th>Téléphone</th>
+                                        <th>Ville</th>
+                                        <th>Actions</th>
+                                    </tr>
+
+                                </thead>
+
+                                <tbody>
+
+                                    {% for entreprise in entreprises %}
+
+                                    <tr>
+
+                                        <td>{{ entreprise.nom }}</td>
+
+                                        <td>{{ entreprise.prenom }}</td>
+
+                                        <td>{{ entreprise.email }}</td>
+
+                                        <td>{{ entreprise.telephone }}</td>
+
+                                        <td>
+                                            {{ entreprise.ville|default:"Non renseignée" }}
+                                        </td>
+
+                                        <td>
+
+                                            <button
+                                                type="button"
+                                                class="btn btn-success btn-sm"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#modalEntreprise{{ entreprise.id }}">
+
+                                                <i class="fas fa-circle-info"></i>
+                                                Infos
+                                            </button>
+
+                                        </td>
+
+                                    </tr>
+
+
+                                    <!-- MODALE ENTREPRISE -->
+
+                                    <div
+                                        class="modal fade"
+                                        id="modalEntreprise{{ entreprise.id }}"
+                                        tabindex="-1"
+                                        aria-hidden="true">
+
+                                        <div class="modal-dialog modal-lg modal-dialog-centered">
+
+                                            <div class="modal-content">
+
+                                                <div class="modal-header bg-success text-white">
+
+                                                    <h5 class="modal-title">
+                                                        Informations de l'entreprise
+                                                    </h5>
+
+                                                    <button
+                                                        type="button"
+                                                        class="btn-close btn-close-white"
+                                                        data-bs-dismiss="modal">
+                                                    </button>
+
+                                                </div>
+
+                                                <div class="modal-body">
+
+                                                    <h4 class="mb-4">
+                                                        {{ entreprise.nom }}
+                                                        {{ entreprise.prenom }}
+                                                    </h4>
+
+                                                    <p>
+                                                        <strong>Email :</strong>
+                                                        {{ entreprise.email }}
+                                                    </p>
+
+                                                    <p>
+                                                        <strong>Téléphone :</strong>
+                                                        {{ entreprise.telephone }}
+                                                    </p>
+
+                                                    <p>
+                                                        <strong>Ville :</strong>
+                                                        {{ entreprise.ville|default:"Non renseignée" }}
+                                                    </p>
+
+                                                    <p>
+                                                        <strong>Domaine :</strong>
+                                                        {{ entreprise.domaine|default:"Non renseigné" }}
+                                                    </p>
+
+                                                    <p>
+                                                        <strong>Métier :</strong>
+                                                        {{ entreprise.metier|default:"Non renseigné" }}
+                                                    </p>
+
+                                                </div>
+
+                                                <div class="modal-footer">
+
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">
+
+                                                        Fermer
+                                                    </button>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    {% empty %}
+
+                                    <tr>
+                                        <td colspan="6" class="text-center py-4">
+                                            Aucune entreprise enregistrée.
+                                        </td>
+                                    </tr>
+
+                                    {% endfor %}
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
 
+
+            <!-- ================================================= -->
+            <!-- TABLEAU 3 : ADMINISTRATEURS -->
+            <!-- ================================================= -->
+
+            <div
+                class="tab-pane fade"
+                id="administrateurs"
+                role="tabpanel">
+
+                <div class="card shadow-sm border-0">
+
+                    <div class="card-header bg-danger text-white py-3">
+
+                        <h5 class="mb-0">
+                            <i class="fas fa-user-shield me-2"></i>
+                            Liste des administrateurs
+                        </h5>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered table-hover align-middle">
+
+                                <thead class="table-light">
+
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Prénom</th>
+                                        <th>Email</th>
+                                        <th>Téléphone</th>
+                                        <th>Rôle</th>
+                                    </tr>
+
+                                </thead>
+
+                                <tbody>
+
+                                    {% for administrateur in administrateurs %}
+
+                                    <tr>
+
+                                        <td>{{ administrateur.nom }}</td>
+
+                                        <td>{{ administrateur.prenom }}</td>
+
+                                        <td>{{ administrateur.email }}</td>
+
+                                        <td>{{ administrateur.telephone }}</td>
+
+                                        <td>
+                                            <span class="badge bg-danger">
+                                                Administrateur
+                                            </span>
+                                        </td>
+
+                                    </tr>
+
+                                    {% empty %}
+
+                                    <tr>
+                                        <td colspan="5" class="text-center py-4">
+                                            Aucun administrateur enregistré.
+                                        </td>
+                                    </tr>
+
+                                    {% endfor %}
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
 
-    </div>
-
-</div>
-
-{% endfor %}
+    </main>
 
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-{% include 'appretrut/utilisateur/footer.html' %}
+    <!-- FOOTER -->
+    {% include 'appretrut/utilisateur/footer.html' %}
 
 
-<!-- =====================================================
-     BOOTSTRAP JAVASCRIPT
-===================================================== -->
-
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"
-></script>
-
+    <!-- BOOTSTRAP JAVASCRIPT -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js">
+    </script>
 
 </body>
-
 </html>
+
